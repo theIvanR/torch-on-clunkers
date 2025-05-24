@@ -64,6 +64,8 @@ Ensure all are in environment variables
 - Ninja (test 
 - Cmake (test 
 
+=> explain that depending on system type use x86 or x64 command compiler thing from visual studio!
+
 
 # 4. Clone & Prepare PyTorch (of select version) from Github
 - Goal: Get a clean, verified, specific snapshot of the PyTorch source code (and its submodules) on your system ready for a reproducible build.
