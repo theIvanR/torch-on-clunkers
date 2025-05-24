@@ -24,7 +24,7 @@
 
 ---
 
-## ⚙️ 2. Install & Verify Prerequisites
+##⚙️ 2. Install & Verify Prerequisites
 
 1. **Visual Studio 2019**  
    - Install **Desktop development with C++** workload  
