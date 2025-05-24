@@ -199,15 +199,17 @@ set USE_SYSTEM_LIBS=0
 
 # 7. Build in “Develop” Mode
 
-```batch rmdir /s /q build```
+- ```batch rmdir /s /q build```
 — Recursively deletes the entire build directory, clearing all compiled artifacts from any previous builds.
-```batch del /q CMakeCache.txt```
+- ```batch del /q CMakeCache.txt```
 — Deletes the CMake cache file which stores previous build settings and paths.
-```batch python setup.py develop```
+- ```batch python setup.py develop```
 - Compiles PyTorch and installs it in editable mode, linking your source tree directly into the Python environment.
 
-    Builds & installs in editable mode—edits reflect immediately.
-    Time: 30 min–2 hrs (hardware‐dependent)
+```batch
+Builds & installs in editable mode—edits reflect immediately.
+Time: 30 min–2 hrs (hardware‐dependent)
+```
 
 ✅ 8. Verify Your Build
 
