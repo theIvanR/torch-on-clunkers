@@ -144,17 +144,14 @@ set USE_NINJA=1                    :: Use Ninja build backend
 set USE_CUPTI=0                    :: Disable CUPTI profiling (leaner build)
 set USE_KINETO=0                   :: Disable Kineto tracing (leaner build)
 ```
+NOTE: if nothing is set aftet these the defaults will be set for your system. Recommended to leave as is, to check use ```set```
 
 ## 6.2 CPU Compile Flags
--Enable or disable CPU instruction sets or backend optimizations here.
+Enable or disable CPU instruction sets or backend optimizations here.
 ```batch
 set BLAS=OpenBLAS                  :: Use OpenBLAS for linear algebra (can be MKL, Eigen, etc.)
 ```
-
--SIMD Flags (pick which ones needed)
-```batch
-set ATEN_AVX512_256=TRUE           :: Optional — limit AVX-512 to 256-bit ops (useful for Xeon D)
-```
+NOTE SIMD already handled by this!
 
 ## 6.3 CPU Backend Flags (Highly Recommended to Disable)
 
@@ -195,9 +192,6 @@ set USE_ZSTD=0
 set BUILD_BINARY=0
 set USE_SYSTEM_LIBS=0
 ```
-
-NOTE: If you omit any of these flags, PyTorch’s build system will auto-detect supported features and enable them based on your system configuration. Explicitly disabling unneeded features ensures a faster, leaner, and cleaner build.
-
 
 # 7. Build in “Develop” Mode
 
