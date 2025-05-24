@@ -133,13 +133,13 @@ Save—now builds will correctly find your VS2019 cl.exe.
 #  6. Set Build Flags
 ## 6.1 Critical Flags
 -These are essential for building with CUDA support and optimizing build time with Ninja.
-   ```set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
+   set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
    set TORCH_CUDA_ARCH_LIST=3.5       :: sm_35 (Kepler) — adjust as needed
    set USE_CUDA=1                     :: Enable CUDA
    set USE_CUDNN=1                    :: Enable cuDNN
    set USE_NINJA=1                    :: Use Ninja build backend
    set USE_CUPTI=0                    :: Disable CUPTI profiling (leaner build)
-   set USE_KINETO=0                   :: Disable Kineto tracing (leaner build)```
+   set USE_KINETO=0                   :: Disable Kineto tracing (leaner build)
 
 ##6.2 CPU Compile Flags
 -Enable or disable CPU instruction sets or backend optimizations here.
