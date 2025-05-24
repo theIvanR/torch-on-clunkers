@@ -95,20 +95,20 @@ Goal: Get a clean, verified, specific snapshot of the PyTorch source code (and i
 - NOTE: You’ll enter detached HEAD state since you’re pointing to a specific commit rather than a branch. Totally fine for builds.
 
 ## 4. 
--```git config --global --add safe.directory C:/Users/<You>/source/pytorch```
--what? Tells Git to treat the pytorch folder as a safe directory for operations.
--why? Newer versions of Git on Windows can throw “unsafe repository” warnings if you clone repos into certain system/user folders, as a security measure.
+- ```git config --global --add safe.directory C:/Users/<You>/source/pytorch```
+- what? Tells Git to treat the pytorch folder as a safe directory for operations.
+- why? Newer versions of Git on Windows can throw “unsafe repository” warnings if you clone repos into certain system/user folders, as a security measure.
 
 
 ## 5. 
--```git submodule sync```
--what? Downloads and initializes all the required submodules for the repo.
--why? Ensures if there were any changes to the submodule URLs or configs upstream, your local setup stays consistent.
+- ```git submodule sync```
+- what? Downloads and initializes all the required submodules for the repo.
+- why? Ensures if there were any changes to the submodule URLs or configs upstream, your local setup stays consistent.
 
 ## 6. 
--```git submodule update --init --recursive```
--what? Downloads and initializes all the required submodules for the repo. PyTorch relies on several third-party libraries (like ATen, caffe2, third_party/kineto, etc.) which live inside the repo as git submodules.
--why? If you don’t run this, those folders will either be empty or missing — causing your build to fail.
+- ```git submodule update --init --recursive```
+- what? Downloads and initializes all the required submodules for the repo. PyTorch relies on several third-party libraries (like ATen, caffe2, third_party/kineto, etc.) which live inside the repo as git submodules.
+- why? If you don’t run this, those folders will either be empty or missing — causing your build to fail.
 
 
 #  5. Install Python Build Dependencies
