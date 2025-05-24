@@ -59,10 +59,10 @@ NOTE: for simplicity, I used miniconda with python 3.9 and added it to path. Of 
 
 # 3. (Optional) Confirm Environment Variables
 Ensure all are in environment variables
--Python (test 
--Cuda (test with nvcc --version)
--Ninja (test 
--Cmake (test 
+- Python (test 
+- Cuda (test with nvcc --version)
+- Ninja (test 
+- Cmake (test 
 
 
 # 4. Clone & Prepare PyTorch (of select version) from Github
