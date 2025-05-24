@@ -133,16 +133,31 @@ Save—now builds will correctly find your VS2019 cl.exe.
 #  6. Set Build Flags
 ## 6.1 Critical Flags
 -These are essential for building with CUDA support and optimizing build time with Ninja.
+   ```set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
+   set TORCH_CUDA_ARCH_LIST=3.5       :: sm_35 (Kepler) — adjust as needed
+   set USE_CUDA=1                     :: Enable CUDA
+   set USE_CUDNN=1                    :: Enable cuDNN
+   set USE_NINJA=1                    :: Use Ninja build backend
+   set USE_CUPTI=0                    :: Disable CUPTI profiling (leaner build)
+   set USE_KINETO=0                   :: Disable Kineto tracing (leaner build)```
 
 ##6.2 CPU Compile Flags
 -Enable or disable CPU instruction sets or backend optimizations here.
+   ```set BLAS=OpenBLAS ```
+-SIMD Flags
+   ```set ATEN_AVX512_256=TRUE           :: Optional — allows AVX512_256 (Xeon D)```
 
 ## 6.3 CPU Backend Flags (Highly Recommended to disable)
 -Disabling these can significantly reduce build time and binary size if not needed:
+   ```set USE_FBGEMM=0
+   set USE_QNNPACK=0
+   set USE_NNPACK=0
+   set USE_MKLDNN=0```
 
 
 ## 6.4 Windows Specific and Optional Flags
 - Additional settings to control distributed, testing, and library use:
+  
    ```set USE_DISTRIBUTED=0              :: Disable multi-node distributed backends
    set USE_TENSORPIPE=0
    set USE_GLOO=0
@@ -174,8 +189,6 @@ Save—now builds will correctly find your VS2019 cl.exe.
    set USE_NINJA=1                    # Use Ninja backend
    set USE_CUPTI=0                    # Disable CUPTI profiling
    set USE_KINETO=0                   # Disable Kineto tracing```
-
-
 
 # 7. Build in “Develop” Mode
 
