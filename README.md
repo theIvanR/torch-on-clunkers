@@ -1,53 +1,39 @@
-🏗️ Build PyTorch from Source on Windows for Kepler GPUs
+# 🏗️ Build PyTorch from Source on Windows for Kepler GPUs
 
-Target hardware: Tesla K40c / K80 (sm_35)
-CUDA: 11.4.4
-cuDNN: 8.7.0
-Visual Studio: 2019
-Python: 3.9
-PyTorch version: 1.12.x
-🔧 1. Tools & Why You Need Them
-Tool	Purpose
-Visual Studio 2019	C/C++ compiler & linker (VC++ v14.x for CUDA 11.4 compatibility)
-CUDA Toolkit 11.4.4	nvcc compiler & GPU libraries for Kepler targets
-cuDNN 8.7.0	NVIDIA’s optimized DL primitives
-Python 3.9	Supported by PyTorch 1.12.x
-Git	Clone repo, manage versions & submodules
-CMake	Generate Ninja/MSBuild project files
-Ninja	Fast parallel build backend
-pip, build (PEP 517)	Install Python deps & produce a wheel
-⚙️ 2. Install & Verify Prerequisites
+**Target hardware:** Tesla K40c / K80 (sm_35)  
+**CUDA:** 11.4.4  
+**cuDNN:** 8.7.0  
+**Visual Studio:** 2019  
+**Python:** 3.9  
+**PyTorch version:** 1.12.x  
 
-    Visual Studio 2019
+---
 
-        Install Desktop development with C++ workload
+## 🔧 1. Tools & Why You Need Them
 
-        Confirm VC++ toolset v14.x is present
+| Tool                        | Purpose                                                         |
+|-----------------------------|-----------------------------------------------------------------|
+| Visual Studio 2019         | C/C++ compiler & linker (VC++ v14.x for CUDA 11.4 compatibility) |
+| CUDA Toolkit 11.4.4        | `nvcc` compiler & GPU libraries for Kepler targets               |
+| cuDNN 8.7.0                | NVIDIA’s optimized DL primitives                                |
+| Python 3.9                 | Supported by PyTorch 1.12.x                                     |
+| Git                        | Clone repo, manage versions & submodules                        |
+| CMake                      | Generate Ninja/MSBuild project files                            |
+| Ninja                      | Fast parallel build backend                                     |
+| pip, build (PEP 517)       | Install Python deps & produce a wheel                           |
 
-    CUDA 11.4.4
+---
 
-    nvcc --version
+## ⚙️ 2. Install & Verify Prerequisites
 
-    cuDNN 8.7.0
+1. **Visual Studio 2019**  
+   - Install **Desktop development with C++** workload  
+   - Confirm VC++ toolset v14.x is present  
 
-        Download for CUDA 11.x
+2. **CUDA 11.4.4**  
+   ```powershell
+   nvcc --version
 
-        Copy bin, include, lib/x64 →
-        C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\
-
-    Python 3.9
-
-        Install from python.org, add to PATH
-
-    Git
-
-        Install from git-scm.com, add to PATH
-
-    CMake & Ninja
-
-        Download ninja.exe → add to PATH
-
-        Install CMake via installer or pip install cmake
 
 🔧 3. Configure Environment Variables
 
