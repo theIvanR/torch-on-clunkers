@@ -130,65 +130,66 @@ In _overlay_windows_vcvars, update:
 
 Save—now builds will correctly find your VS2019 cl.exe.
 
-#  6. Set Build Flags
+# 6️⃣ Set Build Flags
+
 ## 6.1 Critical Flags
--These are essential for building with CUDA support and optimizing build time with Ninja.
-   ```set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4```
-   ```set TORCH_CUDA_ARCH_LIST=3.5       :: sm_35 (Kepler) — adjust as needed```
-   ```set USE_CUDA=1                     :: Enable CUDA```
-  ``` set USE_CUDNN=1                    :: Enable cuDNN```
-   ```set USE_NINJA=1                    :: Use Ninja build backend```
-   ```set USE_CUPTI=0                    :: Disable CUPTI profiling (leaner build)```
-   ```set USE_KINETO=0                   :: Disable Kineto tracing (leaner build)```
+Essential for building with CUDA support and optimizing build time.
 
-##6.2 CPU Compile Flags
+```batch
+set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
+set TORCH_CUDA_ARCH_LIST=3.5       :: sm_35 (Kepler) — adjust as needed
+set USE_CUDA=1                     :: Enable CUDA
+set USE_CUDNN=1                    :: Enable cuDNN
+set USE_NINJA=1                    :: Use Ninja build backend
+set USE_CUPTI=0                    :: Disable CUPTI profiling (leaner build)
+set USE_KINETO=0                   :: Disable Kineto tracing (leaner build)
+
+## 6.2 CPU Compile Flags
 -Enable or disable CPU instruction sets or backend optimizations here.
-   ```set BLAS=OpenBLAS ```
--SIMD Flags
-   ```set ATEN_AVX512_256=TRUE           :: Optional — allows AVX512_256 (Xeon D)```
+set BLAS=OpenBLAS                  :: Use OpenBLAS for linear algebra (can be MKL, Eigen, etc.)
 
-## 6.3 CPU Backend Flags (Highly Recommended to disable)
--Disabling these can significantly reduce build time and binary size if not needed:
-   ```set USE_FBGEMM=0
-   set USE_QNNPACK=0
-   set USE_NNPACK=0
-   set USE_MKLDNN=0```
+:: SIMD Flags
+set ATEN_AVX512_256=TRUE           :: Optional — limit AVX-512 to 256-bit ops (useful for Xeon D)
 
+## 6.3 CPU Backend Flags (Highly Recommended to Disable)
 
-## 6.4 Windows Specific and Optional Flags
-- Additional settings to control distributed, testing, and library use:
-  
-   ```set USE_DISTRIBUTED=0              :: Disable multi-node distributed backends
-   set USE_TENSORPIPE=0
-   set USE_GLOO=0
-   set USE_MPI=0
-   
-   set BUILD_TEST=0                   :: Disable test builds
-   
-   set BUILD_CAFFE2=0                 :: Disable Caffe2 framework
-   
-   set USE_OPENMP=0                   :: Disable OpenMP if not needed
-   set USE_OPENCV=0                   :: Disable OpenCV integration
-   set USE_FFMPEG=0                   :: Disable FFmpeg operators
-   
-   set USE_REDIS=0
-   set USE_LEVELDB=0
-   set USE_LMDB=0
-   set USE_ZSTD=0
-   
-   set BUILD_BINARY=0                 :: Disable binaries build if unnecessary
-   set USE_SYSTEM_LIBS=0              :: Prefer bundled libraries
-   
-   
-   In the same VS prompt, before building:
-   
-   set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
-   set TORCH_CUDA_ARCH_LIST=3.5       # sm_35 (Kepler)
-   set USE_CUDA=1                     # Enable CUDA
-   set USE_CUDNN=1                    # Enable cuDNN
-   set USE_NINJA=1                    # Use Ninja backend
-   set USE_CUPTI=0                    # Disable CUPTI profiling
-   set USE_KINETO=0                   # Disable Kineto tracing```
+Disabling these can significantly reduce build time and binary size if not needed.
+
+set USE_FBGEMM=0                   :: Disable quantized inference backend
+set USE_QNNPACK=0                  :: Disable mobile inference backend
+set USE_NNPACK=0                   :: Disable mobile CPU inference backend
+set USE_MKLDNN=0                   :: Disable MKL-DNN (oneDNN) backend
+
+##6.4 Windows-Specific & Optional Flags
+-Additional settings to control distributed features, tests, and external libraries.
+
+:: Distributed backends
+set USE_DISTRIBUTED=0
+set USE_TENSORPIPE=0
+set USE_GLOO=0
+set USE_MPI=0
+
+:: Disable test builds
+set BUILD_TEST=0
+
+:: Disable Caffe2 framework (unless explicitly needed)
+set BUILD_CAFFE2=0
+
+:: Disable optional libraries
+set USE_OPENMP=0
+set USE_OPENCV=0
+set USE_FFMPEG=0
+set USE_REDIS=0
+set USE_LEVELDB=0
+set USE_LMDB=0
+set USE_ZSTD=0
+
+:: Disable additional binaries and prefer bundled libs
+set BUILD_BINARY=0
+set USE_SYSTEM_LIBS=0
+
+NOTE: If you omit any of these flags, PyTorch’s build system will auto-detect supported features and enable them based on your system configuration. Explicitly disabling unneeded features ensures a faster, leaner, and cleaner build.
+
 
 # 7. Build in “Develop” Mode
 
