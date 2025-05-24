@@ -109,28 +109,53 @@ Ensure all are in environment variables
 
 #  5. Install Python Build Dependencies
 
+## 5.0 Upgrade Pip to newest version and install extensions
+```batch
 pip install --upgrade pip
 pip install typing-extensions future six numpy pyyaml
+```
 
-🔧 5.1 Patch Windows VC-Vars Overlay
+## 5.1 Patch Windows VC-Vars Overlay
+If you run the older pytorch versions you will get a bug: 
+```batch
+C:\Users\Admin\source\pytorch>python setup.py develop
+Building wheel torch-1.12.0a0+git664058f
+-- Building version 1.12.0a0+git664058f
+Traceback (most recent call last):
+  File "C:\Users\Admin\source\pytorch\setup.py", line 944, in <module>
+    build_deps()
+  File "C:\Users\Admin\source\pytorch\setup.py", line 400, in build_deps
+    build_caffe2(version=version,
+  File "C:\Users\Admin\source\pytorch\tools\build_pytorch_libs.py", line 81, in build_caffe2
+    my_env = _create_build_env()
+  File "C:\Users\Admin\source\pytorch\tools\build_pytorch_libs.py", line 67, in _create_build_env
+    my_env = _overlay_windows_vcvars(my_env)
+  File "C:\Users\Admin\source\pytorch\tools\build_pytorch_libs.py", line 36, in _overlay_windows_vcvars
+```
 
-Why?
-Newer setuptools moved _get_vc_env, so PyTorch’s original import fails on VS2019.
+- Why? On recent Windows/python/setuptools combinations, distutils._msvccompiler._get_vc_env has moved (or been hidden), so PyTorch’s original code: 
+```batch
+from setuptools import distutils
+…
+vc_env: Dict[str, str] = distutils._msvccompiler._get_vc_env(vc_arch)
 
-    Open tools/build_pytorch_libs.py
+raises:
 
-    Replace at top:
-
-- from distutils import _msvccompiler
+AttributeError: module 'distutils' has no attribute '_msvccompiler'
+```
+## 5.2 Fix: Open ```tools/build_pytorch_libs.py``` in your cloned PyTorch tree and edit
+-At the top, replace the import of distutils with the modern setuptools path:
+```batch
+- from setuptools import distutils  # type: ignore[import]
 + # modern setuptools relocation of _msvccompiler
 + from setuptools._distutils import _msvccompiler as distutils_msvccompiler
-
-In _overlay_windows_vcvars, update:
-
-    - vc_env: Dict[str, str] = distutils._msvccompiler._get_vc_env(vc_arch)
-    + vc_env: Dict[str, str] = distutils_msvccompiler._get_vc_env(vc_arch)
-
-Save—now builds will correctly find your VS2019 cl.exe.
+```
+-In the _overlay_windows_vcvars function, update the call to use our new alias:
+```batch
+-    vc_env: Dict[str, str] = distutils._msvccompiler._get_vc_env(vc_arch)
++    vc_env: Dict[str, str] = distutils_msvccompiler._get_vc_env(vc_arch)
+```
+-NOW it is safe to run!
 
 # Set Build Flags
 
