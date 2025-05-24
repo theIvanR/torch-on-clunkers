@@ -1,4 +1,4 @@
-# 🏗️ Build PyTorch from Source on Windows for Kepler GPUs
+🏗️ Build PyTorch from Source on Windows for Kepler GPUs
 
 **Target hardware:** Tesla K40c / K80 (sm_35)  
 **CUDA:** 11.4.4  
@@ -9,7 +9,7 @@
 
 ---
 
-## 🔧 1. Tools & Why You Need Them
+# 🔧 1. Tools & Why You Need Them
 
 | Tool                        | Purpose                                                         |
 |-----------------------------|-----------------------------------------------------------------|
@@ -24,7 +24,7 @@
 
 ---
 
-## ⚙️ 2. Install & Verify Prerequisites
+# ⚙️ 2. Install & Verify Prerequisites
 
 1. **Visual Studio 2019**  
    - Install **Desktop development with C++** workload  
