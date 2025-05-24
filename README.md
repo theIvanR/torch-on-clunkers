@@ -24,8 +24,6 @@
 
 ---
 
-# 🔧 1. Tools & Why You Need Them
-
 # ⚙️ 2. Install & Verify Prerequisites
 
 1. **Visual Studio 2019**  
@@ -57,6 +55,7 @@
 
     Install CMake via installer or pip install cmake
 
+# 🔧 1. Tools & Why You Need Them
 
 #🔧 3. Configure Environment Variables
 
