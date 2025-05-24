@@ -155,7 +155,7 @@ Enable or disable CPU instruction sets or backend optimizations here.
 ```batch
 set BLAS=OpenBLAS                  :: Use OpenBLAS for linear algebra (can be MKL, Eigen, etc.)
 ```
-NOTE SIMD already handled by this!
+NOTE SIMD already handled internally by these. If on intel and personal use, MKL will be faster (from intel)!
 
 ## 6.3 CPU Backend Flags (Highly Recommended to Disable)
 
