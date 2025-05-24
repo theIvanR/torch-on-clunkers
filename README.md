@@ -204,7 +204,7 @@ set USE_SYSTEM_LIBS=0
 - ```batch del /q CMakeCache.txt```
 — Deletes the CMake cache file which stores previous build settings and paths.
 - ```batch python setup.py develop```
-- Compiles PyTorch and installs it in editable mode, linking your source tree directly into the Python environment.
+— Compiles PyTorch and installs it in editable mode, linking your source tree directly into the Python environment.
 
 ```batch
 Builds & installs in editable mode—edits reflect immediately.
