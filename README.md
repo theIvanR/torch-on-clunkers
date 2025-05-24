@@ -174,7 +174,39 @@ If using a different version of cuda then system default, set it with this:
 set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
 ```
 
-NOTE: if nothing is set aftet these the defaults will be set for your system. Recommended to leave as is, to check use ```set```
+NOTE: if nothing is set aftet these the defaults will be set for your system. Recommended to leave as is, to check use ```set``` Typical output will be this: 
+```batch
+-- Performing Test COMPILER_WORKS
+-- Performing Test COMPILER_WORKS - Success
+-- Performing Test SUPPORT_GLIBCXX_USE_C99
+-- Performing Test SUPPORT_GLIBCXX_USE_C99 - Success
+-- Performing Test CAFFE2_EXCEPTION_PTR_SUPPORTED
+-- Performing Test CAFFE2_EXCEPTION_PTR_SUPPORTED - Success
+-- std::exception_ptr is supported.
+-- Performing Test CAFFE2_NEED_TO_TURN_OFF_DEPRECATION_WARNING
+-- Performing Test CAFFE2_NEED_TO_TURN_OFF_DEPRECATION_WARNING - Failed
+-- Performing Test C_HAS_AVX_1
+-- Performing Test C_HAS_AVX_1 - Success
+-- Performing Test C_HAS_AVX2_1
+-- Performing Test C_HAS_AVX2_1 - Success
+-- Performing Test C_HAS_AVX512_1
+-- Performing Test C_HAS_AVX512_1 - Success
+-- Performing Test CXX_HAS_AVX_1
+-- Performing Test CXX_HAS_AVX_1 - Success
+-- Performing Test CXX_HAS_AVX2_1
+-- Performing Test CXX_HAS_AVX2_1 - Success
+-- Performing Test CXX_HAS_AVX512_1
+-- Performing Test CXX_HAS_AVX512_1 - Success
+-- Current compiler supports avx2 extension. Will build perfkernels.
+-- Performing Test CAFFE2_COMPILER_SUPPORTS_AVX512_EXTENSIONS
+-- Performing Test CAFFE2_COMPILER_SUPPORTS_AVX512_EXTENSIONS - Success
+-- Current compiler supports avx512f extension. Will build fbgemm.
+-- Performing Test COMPILER_SUPPORTS_HIDDEN_VISIBILITY
+-- Performing Test COMPILER_SUPPORTS_HIDDEN_VISIBILITY - Failed
+-- Performing Test COMPILER_SUPPORTS_HIDDEN_INLINE_VISIBILITY
+-- Performing Test COMPILER_SUPPORTS_HIDDEN_INLINE_VISIBILITY - Failed
+-- Found CUDA: C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.4 (found version "11.4")
+```
 
 ## 6.2 CPU Compile Flags
 Enable or disable CPU instruction sets or backend optimizations here.
