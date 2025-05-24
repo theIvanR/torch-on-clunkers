@@ -81,8 +81,8 @@ C:\Path\To\ninja\
 - what? 
 - why? Keeps your work organized and avoids cluttering your system drive or Python/conda environments with source code.
 
-## 2. Clone Directory from Git
-- ```git clone https://github.com/pytorch/pytorch.git```
+## 2. Clone Directory from Git and go into it
+- ```git clone https://github.com/pytorch/pytorch.git``` then proceed to cd into it with ```cd C:\Users\<You>\source\Pytorch```(or whatever name it makes)
 - what? Clones the full PyTorch GitHub repository to your local system.
 - why? You need the source code to build it. This includes the main repo plus the metadata for its submodules.
 
