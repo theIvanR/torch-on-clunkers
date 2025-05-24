@@ -230,7 +230,7 @@ set USE_SYSTEM_LIBS=0
 — Recursively deletes the entire build directory, clearing all compiled artifacts from any previous builds.
 - ```batch del /q CMakeCache.txt```
 — Deletes the CMake cache file which stores previous build settings and paths.
-- ```python setup.py develop```
+- if in a virtual environment with pyyaml set up use ```python setup.py develop``` otherwise run ```python setup.py install```
 — Compiles PyTorch and installs it in editable mode, linking your source tree directly into the Python environment.
 
 ```batch
@@ -239,7 +239,7 @@ Time: 30 min–2 hrs (hardware‐dependent)
 ```
 
 # 8. Verify Your Build
-Open a fresh PowerShell/CMD (outside the source dir) and test with code to see if gpus found. You should see sm_35 and your Tesla K40c listed.
+Test with first a ```pip list``` command to see if ```torch``` is visible and optionally test with code. pip 
 
 ```batch
 python - << 'PYCODE'
@@ -270,9 +270,9 @@ PYCODE
 ```batch
 python -m build --wheel
 # → dist/torch-*.whl
-
-Install & verify:
-
+```
+- Uninstall, Install & verify:
+```batch
     pip uninstall torch
     pip install dist\torch-*.whl
 
