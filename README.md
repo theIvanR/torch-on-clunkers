@@ -56,7 +56,7 @@
     Install CMake via installer or pip install cmake
 
 
-##🔧 3. Configure Environment Variables
+#🔧 3. Configure Environment Variables
 
 Open System Properties → Advanced → Environment Variables and add:
 
