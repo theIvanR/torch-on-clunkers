@@ -73,7 +73,16 @@ C:\Path\To\ninja\
 # 🌱 4. Clone & Prepare PyTorch
 Goal: Get a clean, verified, specific snapshot of the PyTorch source code (and its submodules) on your system ready for a reproducible build.
 
-## ✅ cd C:\Users\<You>\source 
+## 0. Launch Compiler
+- Launch x64 Native Tools Command Prompt for VS 2019
+
+## 1. Go to your source directory
+- '''cd C:\Users\<You>\source'''
+- why: Keeps your work organized and avoids cluttering your system drive or Python/conda environments with source code.
+
+## 2. Clone Directory from Git
+-
+
     Launch x64 Native Tools Command Prompt for VS 2019
 
     Run:
@@ -96,14 +105,6 @@ Goal: Get a clean, verified, specific snapshot of the PyTorch source code (and i
     Goal:
 
     
-Get a clean, verified, specific snapshot of the PyTorch source code (and its submodules) on your system ready for a reproducible build.
-✅ cd C:\Users\<You>\source
-
-What:
-Changes directory to your chosen workspace folder.
-
-Why:
-Keeps your work organized and avoids cluttering your system drive or Python/conda environments with source code.
 ✅ git clone https://github.com/pytorch/pytorch.git
 
 What:
