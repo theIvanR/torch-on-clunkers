@@ -199,11 +199,11 @@ set USE_SYSTEM_LIBS=0
 
 # 7. Build in “Develop” Mode
 
-- ```batch rmdir /s /q build```
+- ```rmdir /s /q build```
 — Recursively deletes the entire build directory, clearing all compiled artifacts from any previous builds.
 - ```batch del /q CMakeCache.txt```
 — Deletes the CMake cache file which stores previous build settings and paths.
-- ```batch python setup.py develop```
+- ```python setup.py develop```
 — Compiles PyTorch and installs it in editable mode, linking your source tree directly into the Python environment.
 
 ```batch
