@@ -136,7 +136,6 @@ Save—now builds will correctly find your VS2019 cl.exe.
 Essential for building with CUDA support and optimizing build time.
 
 ```batch
-set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
 set TORCH_CUDA_ARCH_LIST=3.5       :: sm_35 (Kepler) — adjust as needed
 set USE_CUDA=1                     :: Enable CUDA
 set USE_CUDNN=1                    :: Enable cuDNN
@@ -144,6 +143,9 @@ set USE_NINJA=1                    :: Use Ninja build backend
 set USE_CUPTI=0                    :: Disable CUPTI profiling (leaner build)
 set USE_KINETO=0                   :: Disable Kineto tracing (leaner build)
 ```
+If using a different version of cuda then system default, set it with this: ```batch set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
+```
+
 NOTE: if nothing is set aftet these the defaults will be set for your system. Recommended to leave as is, to check use ```set```
 
 ## 6.2 CPU Compile Flags
