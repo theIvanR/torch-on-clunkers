@@ -71,7 +71,7 @@ C:\Path\To\Python39\Scripts\
 C:\Path\To\ninja\
 
 # 4. Clone & Prepare PyTorch (of select version) from Github
-Goal: Get a clean, verified, specific snapshot of the PyTorch source code (and its submodules) on your system ready for a reproducible build.
+- Goal: Get a clean, verified, specific snapshot of the PyTorch source code (and its submodules) on your system ready for a reproducible build.
 
 ## 0. Launch Compiler
 - Launch x64 Native Tools Command Prompt for VS 2019
@@ -82,14 +82,13 @@ Goal: Get a clean, verified, specific snapshot of the PyTorch source code (and i
 - why? Keeps your work organized and avoids cluttering your system drive or Python/conda environments with source code.
 
 ## 2. Clone Directory from Git
--```git clone https://github.com/pytorch/pytorch.git```
--what? Clones the full PyTorch GitHub repository to your local system.
--why? You need the source code to build it. This includes the main repo plus the metadata for its submodules.
+- ```git clone https://github.com/pytorch/pytorch.git```
+- what? Clones the full PyTorch GitHub repository to your local system.
+- why? You need the source code to build it. This includes the main repo plus the metadata for its submodules.
 
 
 ## 3. Checkout Release
-- ```git fetch --all --tags```
-- ```git checkout v1.12.1```
+- ```git fetch --all --tags``` and then run ```git checkout v1.12.1``` (or your select version)
 - what? Fetches all remote branches, tags, and refs from the PyTorch GitHub repository without actually changing your working directory.
 - why? So you can see and check out a specific stable release (like v1.12.1) instead of using whatever happened to be the latest unstable commit on main.
 - NOTE: You’ll enter detached HEAD state since you’re pointing to a specific commit rather than a branch. Totally fine for builds.
