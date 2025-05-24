@@ -130,7 +130,7 @@ In _overlay_windows_vcvars, update:
 
 Save—now builds will correctly find your VS2019 cl.exe.
 
-# 6️⃣ Set Build Flags
+# Set Build Flags
 
 ## 6.1 Critical Flags
 Essential for building with CUDA support and optimizing build time.
@@ -147,25 +147,29 @@ set USE_KINETO=0                   :: Disable Kineto tracing (leaner build)
 
 ## 6.2 CPU Compile Flags
 -Enable or disable CPU instruction sets or backend optimizations here.
+```batch
 set BLAS=OpenBLAS                  :: Use OpenBLAS for linear algebra (can be MKL, Eigen, etc.)
+```
 
-:: SIMD Flags
+-SIMD Flags (pick which ones needed)
+```batch
 set ATEN_AVX512_256=TRUE           :: Optional — limit AVX-512 to 256-bit ops (useful for Xeon D)
+```
 
 ## 6.3 CPU Backend Flags (Highly Recommended to Disable)
 
 Disabling these can significantly reduce build time and binary size if not needed.
-```batch
-set USE_FBGEMM=0                   :: Disable quantized inference backend
-set USE_QNNPACK=0                  :: Disable mobile inference backend
-set USE_NNPACK=0                   :: Disable mobile CPU inference backend
-set USE_MKLDNN=0                   :: Disable MKL-DNN (oneDNN) backend
-```
+   ```batch
+   set USE_FBGEMM=0                   :: Disable quantized inference backend
+   set USE_QNNPACK=0                  :: Disable mobile inference backend
+   set USE_NNPACK=0                   :: Disable mobile CPU inference backend
+   set USE_MKLDNN=0                   :: Disable MKL-DNN (oneDNN) backend
+   ```
 
-##6.4 Windows-Specific & Optional Flags
+## 6.4 Windows-Specific & Optional Flags
 -Additional settings to control distributed features, tests, and external libraries.
-```batch
 
+```batch
 :: Distributed backends
 set USE_DISTRIBUTED=0
 set USE_TENSORPIPE=0
