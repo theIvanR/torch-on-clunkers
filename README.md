@@ -34,8 +34,29 @@
    ```powershell
    nvcc --version
 
+3. cuDNN 8.7.0
 
-🔧 3. Configure Environment Variables
+    Download for CUDA 11.x
+
+    Copy bin, include, lib/x64 →
+    C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\
+
+4. Python 3.9
+
+    Install from python.org, add to PATH
+
+5. Git
+
+    Install from git-scm.com, add to PATH
+
+6. CMake & Ninja
+
+    Download ninja.exe → add to PATH
+
+    Install CMake via installer or pip install cmake
+
+
+##🔧 3. Configure Environment Variables
 
 Open System Properties → Advanced → Environment Variables and add:
 
