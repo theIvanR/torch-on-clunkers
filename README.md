@@ -10,6 +10,7 @@
 ---
 
 # 1. Tools & Why You Need Them
+NOTE: for simplicity, I used miniconda with python 3.9 and added it to path. Of course, different settings and virtual environments can be used. 
 
 | Tool                        | Purpose                                                         |
 |-----------------------------|-----------------------------------------------------------------|
@@ -22,50 +23,18 @@
 | Ninja                      | Fast parallel build backend                                     |
 | pip, build (PEP 517)       | Install Python deps & produce a wheel                           |
 
-NOTE: for simplicity, I used miniconda with python 3.9 and added it to path. Of course, different settings and virtual environments can be used. 
-
 ---
 
 # 2. Install & Verify Prerequisites
-
-1. **Visual Studio 2019**  
-   - Install **Desktop development with C++** workload  
-   - Confirm VC++ toolset v14.x is present  
-
-2. **CUDA 11.4.4**  
-   ```powershell```
-   nvcc --version
-
-3. **cuDNN 8.7.0**
-
-    Download for CUDA 11.x
-
-    Copy bin, include, lib/x64 →
-    C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\
-
-4. **Python 3.9**
-
-    Install from python.org, add to PATH
-
-5. **Git**
-
-    Install from git-scm.com, add to PATH
-
-6. **CMake & Ninja**
-
-    Download ninja.exe → add to PATH
-
-    Install CMake via installer or pip install cmake
-
-# 3. (Optional) Confirm Environment Variables
 Ensure all are in environment variables
-- Python (test 
-- Cuda (test with nvcc --version)
-- Ninja (test 
-- Cmake (test 
+- Python 
+- Cuda (test with nvcc --version) and that Copy bin, include, lib/x64 (from cuDNN is pasted to) → ```C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\```
+- Ninja 
+- Cmake
+- -git
 
-=> explain that depending on system type use x86 or x64 command compiler thing from visual studio!
-
+# 3. Launch x64 (or x86) Native Command Tools Prompt from Start
+We will be using this command prompt for all further steps!
 
 # 4. Clone & Prepare PyTorch (of select version) from Github
 - Goal: Get a clean, verified, specific snapshot of the PyTorch source code (and its submodules) on your system ready for a reproducible build.
@@ -269,28 +238,36 @@ Builds & installs in editable mode—edits reflect immediately.
 Time: 30 min–2 hrs (hardware‐dependent)
 ```
 
-✅ 8. Verify Your Build
+# 8. Verify Your Build
+Open a fresh PowerShell/CMD (outside the source dir) and test with code to see if gpus found. You should see sm_35 and your Tesla K40c listed.
 
-Open a fresh PowerShell/CMD (outside the source dir):
-
+```batch
 python - << 'PYCODE'
 import torch
-print("Torch version:", torch.__version__)
-print("CUDA available:", torch.cuda.is_available())
-if torch.cuda.is_available():
-    print("Device 0:", torch.cuda.get_device_name(0),
-          torch.cuda.get_device_capability(0))
+
+# Print PyTorch version
+print("PyTorch version:", torch.__version__)
+print(torch.cuda.get_device_capability(0))
+
+# Check if CUDA is available
+cuda_available = torch.cuda.is_available()
+print("CUDA available:", cuda_available)
+
+# If CUDA is available, print number of GPUs and their names
+if cuda_available:
+    num_gpus = torch.cuda.device_count()
+    print(f"Number of GPUs detected: {num_gpus}")
+    for i in range(num_gpus):
+        print(f"GPU {i}: {torch.cuda.get_device_name(i)}")
+else:
+    print("No GPUs detected.")
 PYCODE
+```
 
-You should see sm_35 and your Tesla K40c listed.
-📦 9. Produce a Portable Wheel
-
-    Install PEP 517 builder (one-time):
-
-pip install build
-
-Generate wheel:
-
+# 9. Produce a Portable Wheel
+- ```pip install build``` to generate wheels. 
+- Run and Verify
+```batch
 python -m build --wheel
 # → dist/torch-*.whl
 
@@ -300,9 +277,14 @@ Install & verify:
     pip install dist\torch-*.whl
 
     The wheel lives in site-packages/torch; you can safely delete the .whl file afterward.
+```
 
-🔄 10. Rebuild with Different Flags
+# 🎉 Congratulations!
+You now have a fully native Windows build of PyTorch for Kepler GPUs—and a portable wheel you can install anywhere. Feel free to tweak flags to suit other architectures, CPU features, or profiling needs. Enjoy!
 
+
+# Bonus: Rebuild with Different Flags
+```batch
     No flags: autodetect defaults (all SM archs).
 
     View all flags:
@@ -315,6 +297,4 @@ Example: target multiple archs or disable AVX:
     set USE_AVX=0
     set USE_FBGEMM=0
     python setup.py develop
-
-🎉 Congratulations!
-You now have a fully native Windows build of PyTorch for Kepler GPUs—and a portable wheel you can install anywhere. Feel free to tweak flags to suit other architectures, CPU features, or profiling needs. Enjoy!
+```
