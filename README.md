@@ -22,6 +22,8 @@
 | Ninja                      | Fast parallel build backend                                     |
 | pip, build (PEP 517)       | Install Python deps & produce a wheel                           |
 
+NOTE: for simplicity, I used miniconda with python 3.9 and added it to path. Of course, different settings and virtual environments can be used. 
+
 ---
 
 # 2. Install & Verify Prerequisites
