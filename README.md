@@ -57,20 +57,13 @@ NOTE: for simplicity, I used miniconda with python 3.9 and added it to path. Of 
 
     Install CMake via installer or pip install cmake
 
-# 3. Configure environment variables
+# 3. (Optional) Confirm Environment Variables
+Ensure all are in environment variables
+-Python (test 
+-Cuda (test with nvcc --version)
+-Ninja (test 
+-Cmake (test 
 
-Open System Properties → Advanced → Environment Variables and add:
-
-CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
-
-In your Path (User or System), ensure:
-
-%CUDA_PATH%\bin
-%CUDA_PATH%\lib\x64
-C:\Path\To\Git\cmd
-C:\Path\To\Python39\
-C:\Path\To\Python39\Scripts\
-C:\Path\To\ninja\
 
 # 4. Clone & Prepare PyTorch (of select version) from Github
 - Goal: Get a clean, verified, specific snapshot of the PyTorch source code (and its submodules) on your system ready for a reproducible build.
