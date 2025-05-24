@@ -9,7 +9,7 @@
 
 ---
 
-# 🔧 1. Tools & Why You Need Them
+# 1. Tools & Why You Need Them
 
 | Tool                        | Purpose                                                         |
 |-----------------------------|-----------------------------------------------------------------|
@@ -24,7 +24,7 @@
 
 ---
 
-# ⚙️ 2. Install & Verify Prerequisites
+# 2. Install & Verify Prerequisites
 
 1. **Visual Studio 2019**  
    - Install **Desktop development with C++** workload  
@@ -55,9 +55,7 @@
 
     Install CMake via installer or pip install cmake
 
-# 🔧 1. Tools & Why You Need Them
-
-#🔧 3. Configure Environment Variables
+# 3. Configure environment variables
 
 Open System Properties → Advanced → Environment Variables and add:
 
