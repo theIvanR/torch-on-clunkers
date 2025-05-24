@@ -84,7 +84,7 @@ pip install --upgrade pip
 pip install typing-extensions future six numpy pyyaml
 ```
 
-## 5.1 Patch Windows VC-Vars Overlay (for older versions such as 1.12.0)
+## 5.1 Patch Windows VC-Vars Overlay
 If you run the older pytorch versions you will get a bug: 
 ```batch
 C:\Users\Admin\source\pytorch>python setup.py develop
