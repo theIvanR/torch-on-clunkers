@@ -268,9 +268,13 @@ PYCODE
 - ```pip install build``` to generate wheels. 
 - Run and Verify
 ```batch
-python -m build --wheel
-# → dist/torch-*.whl
+python setup.py bdist_wheel
 ```
+alternatively 
+```batch
+python -m build --wheel --no-build-isolation
+```
+
 - Uninstall, Install & verify:
 ```batch
     pip uninstall torch
