@@ -147,8 +147,7 @@ AttributeError: module 'distutils' has no attribute '_msvccompiler'
 -At the top, replace the import of distutils with the modern setuptools path:
 ```batch
 - from setuptools import distutils  # type: ignore[import]
-+ # modern setuptools relocation of _msvccompiler
-+ from setuptools._distutils import _msvccompiler as distutils_msvccompiler
++ from setuptools._distutils import _msvccompiler as distutils_msvccompiler # modern setuptools relocation of _msvccompiler
 ```
 -In the _overlay_windows_vcvars function, update the call to use our new alias:
 ```batch
