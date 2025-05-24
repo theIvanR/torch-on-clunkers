@@ -70,7 +70,7 @@ C:\Path\To\Python39\
 C:\Path\To\Python39\Scripts\
 C:\Path\To\ninja\
 
-🌱 4. Clone & Prepare PyTorch
+# 🌱 4. Clone & Prepare PyTorch
 
     Launch x64 Native Tools Command Prompt for VS 2019
 
@@ -168,7 +168,7 @@ Options explained:
 
     --recursive → goes into nested submodules inside submodules and updates those too (PyTorch has a few)
 
-🐍 5. Install Python Build Dependencies
+#  5. Install Python Build Dependencies
 
 pip install --upgrade pip
 pip install typing-extensions future six numpy pyyaml
@@ -192,7 +192,7 @@ In _overlay_windows_vcvars, update:
     + vc_env: Dict[str, str] = distutils_msvccompiler._get_vc_env(vc_arch)
 
 Save—now builds will correctly find your VS2019 cl.exe.
-🎛️ 6. Set Build Flags
+#  6. Set Build Flags
 
 In the same VS prompt, before building:
 
@@ -210,7 +210,7 @@ set USE_KINETO=0                   # Disable Kineto tracing
 
     USE_CUPTI/KINETO: disable for leaner build
 
-🏗️ 7. Build in “Develop” Mode
+# 7. Build in “Develop” Mode
 
 rmdir /s /q build
 del /q CMakeCache.txt
