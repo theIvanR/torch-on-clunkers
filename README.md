@@ -143,6 +143,7 @@ set USE_CUDNN=1                    :: Enable cuDNN
 set USE_NINJA=1                    :: Use Ninja build backend
 set USE_CUPTI=0                    :: Disable CUPTI profiling (leaner build)
 set USE_KINETO=0                   :: Disable Kineto tracing (leaner build)
+```
 
 ## 6.2 CPU Compile Flags
 -Enable or disable CPU instruction sets or backend optimizations here.
@@ -154,14 +155,16 @@ set ATEN_AVX512_256=TRUE           :: Optional — limit AVX-512 to 256-bit ops 
 ## 6.3 CPU Backend Flags (Highly Recommended to Disable)
 
 Disabling these can significantly reduce build time and binary size if not needed.
-
+```batch
 set USE_FBGEMM=0                   :: Disable quantized inference backend
 set USE_QNNPACK=0                  :: Disable mobile inference backend
 set USE_NNPACK=0                   :: Disable mobile CPU inference backend
 set USE_MKLDNN=0                   :: Disable MKL-DNN (oneDNN) backend
+```
 
 ##6.4 Windows-Specific & Optional Flags
 -Additional settings to control distributed features, tests, and external libraries.
+```batch
 
 :: Distributed backends
 set USE_DISTRIBUTED=0
@@ -187,6 +190,7 @@ set USE_ZSTD=0
 :: Disable additional binaries and prefer bundled libs
 set BUILD_BINARY=0
 set USE_SYSTEM_LIBS=0
+```
 
 NOTE: If you omit any of these flags, PyTorch’s build system will auto-detect supported features and enable them based on your system configuration. Explicitly disabling unneeded features ensures a faster, leaner, and cleaner build.
 
