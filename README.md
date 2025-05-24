@@ -31,7 +31,7 @@
    - Confirm VC++ toolset v14.x is present  
 
 2. **CUDA 11.4.4**  
-   ```powershell
+   ```powershell```
    nvcc --version
 
 3. **cuDNN 8.7.0**
@@ -91,6 +91,83 @@ C:\Path\To\ninja\
     # Init submodules:
     git submodule sync
     git submodule update --init --recursive
+
+    Goal:
+
+    
+Get a clean, verified, specific snapshot of the PyTorch source code (and its submodules) on your system ready for a reproducible build.
+✅ cd C:\Users\<You>\source
+
+What:
+Changes directory to your chosen workspace folder.
+
+Why:
+Keeps your work organized and avoids cluttering your system drive or Python/conda environments with source code.
+✅ git clone https://github.com/pytorch/pytorch.git
+
+What:
+Clones the full PyTorch GitHub repository to your local system.
+
+Why:
+You need the source code to build it. This includes the main repo plus the metadata for its submodules.
+
+Result:
+A pytorch directory appears inside your source folder containing the entire codebase.
+✅ cd pytorch
+
+What:
+Move into the pytorch directory you just cloned.
+
+Why:
+All build commands and git operations happen from inside this directory.
+✅ git fetch --all --tags
+
+What:
+Fetches all remote branches, tags, and refs from the PyTorch GitHub repository without actually changing your working directory.
+
+Why:
+So you can see and check out a specific stable release (like v1.12.1) instead of using whatever happened to be the latest unstable commit on main.
+Tags mark official release versions.
+✅ git checkout v1.12.1
+
+What:
+Switches your working directory to the exact commit that marks version 1.12.1 of PyTorch.
+
+Why:
+Ensures you’re building a known, tested, stable release, and not the moving target of the latest commits.
+This is important for repeatable builds and compatibility with specific CUDA versions and hardware.
+
+Heads-up:
+You’ll enter detached HEAD state since you’re pointing to a specific commit rather than a branch. Totally fine for builds.
+✅ git config --global --add safe.directory C:/Users/<You>/source/pytorch
+
+What:
+Tells Git to treat the pytorch folder as a safe directory for operations.
+
+Why:
+Newer versions of Git on Windows can throw “unsafe repository” warnings if you clone repos into certain system/user folders, as a security measure.
+This command silences that by marking it explicitly as safe globally on your system.
+✅ git submodule sync
+
+What:
+Resyncs your submodule config in .gitmodules with the URLs listed in your local git config.
+
+Why:
+Ensures if there were any changes to the submodule URLs or configs upstream, your local setup stays consistent.
+✅ git submodule update --init --recursive
+
+What:
+Downloads and initializes all the required submodules for the repo.
+PyTorch relies on several third-party libraries (like ATen, caffe2, third_party/kineto, etc.) which live inside the repo as git submodules.
+
+Why:
+If you don’t run this, those folders will either be empty or missing — causing your build to fail.
+
+Options explained:
+
+    --init → initializes any uninitialized submodules
+
+    --recursive → goes into nested submodules inside submodules and updates those too (PyTorch has a few)
 
 🐍 5. Install Python Build Dependencies
 
