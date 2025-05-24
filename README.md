@@ -39,7 +39,7 @@
     Download for CUDA 11.x
 
     Copy bin, include, lib/x64 →
-    ```C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\
+    C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\
 
 4. **Python 3.9**
 
