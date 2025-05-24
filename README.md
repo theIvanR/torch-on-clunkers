@@ -71,7 +71,9 @@ C:\Path\To\Python39\Scripts\
 C:\Path\To\ninja\
 
 # 🌱 4. Clone & Prepare PyTorch
+Goal: Get a clean, verified, specific snapshot of the PyTorch source code (and its submodules) on your system ready for a reproducible build.
 
+## ✅ cd C:\Users\<You>\source 
     Launch x64 Native Tools Command Prompt for VS 2019
 
     Run:
