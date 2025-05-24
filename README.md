@@ -24,6 +24,8 @@
 
 ---
 
+# 🔧 1. Tools & Why You Need Them
+
 # ⚙️ 2. Install & Verify Prerequisites
 
 1. **Visual Studio 2019**  
