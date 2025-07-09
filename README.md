@@ -84,6 +84,13 @@ pip install --upgrade pip
 pip install typing-extensions future six numpy pyyaml
 ```
 
+Important: 
+install proper numpy version as otherwise it crashes (for 1.12.1 use numpy 
+```batch
+pip uninstall numpy
+pip install numpy==1.21.6
+```
+
 ## 5.1 Patch Windows VC-Vars Overlay
 If you run the older pytorch versions you will get a bug: 
 ```batch
