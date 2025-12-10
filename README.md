@@ -250,11 +250,8 @@ PYCODE
 - ```pip install build``` to generate wheels. 
 - Run and Verify
 ```batch
-python setup.py bdist_wheel
-```
-alternatively 
-```batch
-python -m build --wheel --no-build-isolation
+pip install --upgrade build
+python -m build --wheel --no-isolation
 ```
 
 - Uninstall, Install & verify:
