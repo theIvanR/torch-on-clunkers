@@ -53,7 +53,7 @@ git checkout v1.12.1
 
 :: 4. Mark the directory as safe (Windows Git safety check)
 git config --global --add safe.directory C:/Users/<You>/source/pytorch
-
+```
 
 #  5. Install Python Build Dependencies
 
