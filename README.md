@@ -43,13 +43,9 @@ We will be using this command prompt for all further steps!
 :: 1. Go to your desired source directory
 cd C:\Users\<You>\source
 
-:: 2. Clone PyTorch and all submodules at a specific tag in one go
-git clone --recursive https://github.com/pytorch/pytorch.git
+:: 2. Clone PyTorch at the specific tag
+git clone --recursive https://github.com/pytorch/pytorch.git --branch v1.12.1
 cd pytorch
-
-:: 3. Checkout the specific release (e.g., v1.12.1)
-git fetch --all --tags
-git checkout v1.12.1
 
 :: 4. Mark the directory as safe (Windows Git safety check)
 git config --global --add safe.directory C:/Users/<You>/source/pytorch
