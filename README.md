@@ -37,43 +37,21 @@ Ensure all are in environment variables
 We will be using this command prompt for all further steps!
 
 # 4. Clone & Prepare PyTorch (of select version) from Github
-- Goal: Get a clean, verified, specific snapshot of the PyTorch source code (and its submodules) on your system ready for a reproducible build.
-
-## 4.0. Launch Compiler
 - Launch x64 Native Tools Command Prompt for VS 2019
 
-## 4.1. Go to your source directory
-- ```cd C:\Users\<You>\source```
-- what? 
-- why? Keeps your work organized and avoids cluttering your system drive or Python/conda environments with source code.
+:: 1. Go to your desired source directory
+cd C:\Users\<You>\source
 
-## 4.2. Clone Directory from Git and go into it
-- ```git clone https://github.com/pytorch/pytorch.git``` then proceed to cd into it with ```cd C:\Users\<You>\source\Pytorch```(or whatever name it makes)
-- what? Clones the full PyTorch GitHub repository to your local system.
-- why? You need the source code to build it. This includes the main repo plus the metadata for its submodules.
+:: 2. Clone PyTorch and all submodules at a specific tag in one go
+git clone --recursive https://github.com/pytorch/pytorch.git
+cd pytorch
 
+:: 3. Checkout the specific release (e.g., v1.12.1)
+git fetch --all --tags
+git checkout v1.12.1
 
-## 4.3. Checkout Release
-- ```git fetch --all --tags``` and then run ```git checkout v1.12.1``` (or your select version)
-- what? Fetches all remote branches, tags, and refs from the PyTorch GitHub repository without actually changing your working directory.
-- why? So you can see and check out a specific stable release (like v1.12.1) instead of using whatever happened to be the latest unstable commit on main.
-- NOTE: You’ll enter detached HEAD state since you’re pointing to a specific commit rather than a branch. Totally fine for builds.
-
-## 4.4. 
-- ```git config --global --add safe.directory C:/Users/<You>/source/pytorch```
-- what? Tells Git to treat the pytorch folder as a safe directory for operations.
-- why? Newer versions of Git on Windows can throw “unsafe repository” warnings if you clone repos into certain system/user folders, as a security measure.
-
-
-## 4.5. 
-- ```git submodule sync```
-- what? Downloads and initializes all the required submodules for the repo.
-- why? Ensures if there were any changes to the submodule URLs or configs upstream, your local setup stays consistent.
-
-## 4.6. 
-- ```git submodule update --init --recursive```
-- what? Downloads and initializes all the required submodules for the repo. PyTorch relies on several third-party libraries (like ATen, caffe2, third_party/kineto, etc.) which live inside the repo as git submodules.
-- why? If you don’t run this, those folders will either be empty or missing — causing your build to fail.
+:: 4. Mark the directory as safe (Windows Git safety check)
+git config --global --add safe.directory C:/Users/<You>/source/pytorch
 
 
 #  5. Install Python Build Dependencies
