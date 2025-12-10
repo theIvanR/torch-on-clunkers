@@ -47,7 +47,7 @@ cd C:\Users\<You>\source
 git clone --recursive https://github.com/pytorch/pytorch.git --branch v1.12.1
 cd pytorch
 
-:: 4. Mark the directory as safe (Windows Git safety check)
+:: 3. Mark the directory as safe (Windows Git safety check)
 git config --global --add safe.directory C:/Users/<You>/source/pytorch
 ```
 
