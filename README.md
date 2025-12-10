@@ -247,6 +247,8 @@ PYCODE
 ```
 
 # 9. Produce a Portable Wheel
+(possibly needed: pip install cmake astunparse)
+
 - ```pip install build``` to generate wheels. 
 - Run and Verify
 ```batch
