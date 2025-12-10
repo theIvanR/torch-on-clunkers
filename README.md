@@ -39,6 +39,7 @@ We will be using this command prompt for all further steps!
 # 4. Clone & Prepare PyTorch (of select version) from Github
 - Launch x64 Native Tools Command Prompt for VS 2019
 
+```batch
 :: 1. Go to your desired source directory
 cd C:\Users\<You>\source
 
