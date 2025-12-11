@@ -107,162 +107,35 @@ AttributeError: module 'distutils' has no attribute '_msvccompiler'
 ```
 -NOW it is safe to run!
 
-# Set Build Flags
+##  6 Build your Wheel with flags
+batch```
 
-## 6.1 Critical Flags
-Essential for building with CUDA support and optimizing build time.
+@echo off
+REM --- Load MSVC compiler environment ---
+CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 
-```batch
-set TORCH_CUDA_ARCH_LIST=3.5       :: sm_35 (Kepler) — adjust as needed
-set USE_CUDA=1                     :: Enable CUDA
-set USE_CUDNN=1                    :: Enable cuDNN
-set USE_NINJA=1                    :: Use Ninja build backend
-set USE_CUPTI=0                    :: Disable CUPTI profiling (leaner build)
-set USE_KINETO=0                   :: Disable Kineto tracing (leaner build)
-```
-If using a different version of cuda then system default, set it with this: 
-```batch 
-set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
-```
+REM --- Set PyTorch build environment variables ---
+set TORCH_CUDA_ARCH_LIST=3.5
+set CMAKE_ARGS=-DCMAKE_POLICY_VERSION_MINIMUM=3.5
+set USE_CUDA=1
+set USE_CUDNN=1
+set USE_NINJA=1
+set USE_CUPTI=0
+set USE_KINETO=0
 
-NOTE: if nothing is set aftet these the defaults will be set for your system. Recommended to leave as is, to check use ```set``` Typical output will be this: 
-```batch
--- Performing Test COMPILER_WORKS
--- Performing Test COMPILER_WORKS - Success
--- Performing Test SUPPORT_GLIBCXX_USE_C99
--- Performing Test SUPPORT_GLIBCXX_USE_C99 - Success
--- Performing Test CAFFE2_EXCEPTION_PTR_SUPPORTED
--- Performing Test CAFFE2_EXCEPTION_PTR_SUPPORTED - Success
--- std::exception_ptr is supported.
--- Performing Test CAFFE2_NEED_TO_TURN_OFF_DEPRECATION_WARNING
--- Performing Test CAFFE2_NEED_TO_TURN_OFF_DEPRECATION_WARNING - Failed
--- Performing Test C_HAS_AVX_1
--- Performing Test C_HAS_AVX_1 - Success
--- Performing Test C_HAS_AVX2_1
--- Performing Test C_HAS_AVX2_1 - Success
--- Performing Test C_HAS_AVX512_1
--- Performing Test C_HAS_AVX512_1 - Success
--- Performing Test CXX_HAS_AVX_1
--- Performing Test CXX_HAS_AVX_1 - Success
--- Performing Test CXX_HAS_AVX2_1
--- Performing Test CXX_HAS_AVX2_1 - Success
--- Performing Test CXX_HAS_AVX512_1
--- Performing Test CXX_HAS_AVX512_1 - Success
--- Current compiler supports avx2 extension. Will build perfkernels.
--- Performing Test CAFFE2_COMPILER_SUPPORTS_AVX512_EXTENSIONS
--- Performing Test CAFFE2_COMPILER_SUPPORTS_AVX512_EXTENSIONS - Success
--- Current compiler supports avx512f extension. Will build fbgemm.
--- Performing Test COMPILER_SUPPORTS_HIDDEN_VISIBILITY
--- Performing Test COMPILER_SUPPORTS_HIDDEN_VISIBILITY - Failed
--- Performing Test COMPILER_SUPPORTS_HIDDEN_INLINE_VISIBILITY
--- Performing Test COMPILER_SUPPORTS_HIDDEN_INLINE_VISIBILITY - Failed
--- Found CUDA: C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.4 (found version "11.4")
-```
+REM --- Go to your PyTorch source directory ---
+cd /d C:\Users\%USERNAME%\source\pytorch
 
-## 6.2 CPU Compile Flags
-Enable or disable CPU instruction sets or backend optimizations here.
-```batch
-set BLAS=OpenBLAS                  :: Use OpenBLAS for linear algebra (can be MKL, Eigen, etc.)
-```
-NOTE SIMD already handled internally by these. If on intel and personal use, MKL will be faster (from intel)!
-
-## 6.3 CPU Backend Flags (Highly Recommended to Disable)
-
-Disabling these can significantly reduce build time and binary size if not needed.
-   ```batch
-   set USE_FBGEMM=0                   :: Disable quantized inference backend
-   set USE_QNNPACK=0                  :: Disable mobile inference backend
-   set USE_NNPACK=0                   :: Disable mobile CPU inference backend
-   set USE_MKLDNN=0                   :: Disable MKL-DNN (oneDNN) backend
-   ```
-
-## 6.4 Windows-Specific & Optional Flags
--Additional settings to control distributed features, tests, and external libraries.
-
-```batch
-:: Distributed backends
-set USE_DISTRIBUTED=0
-set USE_TENSORPIPE=0
-set USE_GLOO=0
-set USE_MPI=0
-
-:: Disable test builds
-set BUILD_TEST=0
-
-:: Disable Caffe2 framework (unless explicitly needed)
-set BUILD_CAFFE2=0
-
-:: Disable optional libraries
-set USE_OPENMP=0
-set USE_OPENCV=0
-set USE_FFMPEG=0
-set USE_REDIS=0
-set USE_LEVELDB=0
-set USE_LMDB=0
-set USE_ZSTD=0
-
-:: Disable additional binaries and prefer bundled libs
-set BUILD_BINARY=0
-set USE_SYSTEM_LIBS=0
-```
-
-# 7. Build in “Develop” Mode
-
-- ```rmdir /s /q build```
-— Recursively deletes the entire build directory, clearing all compiled artifacts from any previous builds.
-- ```batch del /q CMakeCache.txt```
-— Deletes the CMake cache file which stores previous build settings and paths.
-- if in a virtual environment with pyyaml set up use ```python setup.py develop``` otherwise run ```python setup.py install```
-— Compiles PyTorch and installs it in editable mode, linking your source tree directly into the Python environment.
-
-```batch
-Builds & installs in editable mode—edits reflect immediately.
-Time: 30 min–2 hrs (hardware‐dependent)
-```
-
-# 8. Verify Your Build
-Test with first a ```pip list``` command to see if ```torch``` is visible and optionally test with code. pip 
-
-```batch
-python - << 'PYCODE'
-import torch
-
-# Print PyTorch version
-print("PyTorch version:", torch.__version__)
-print(torch.cuda.get_device_capability(0))
-
-# Check if CUDA is available
-cuda_available = torch.cuda.is_available()
-print("CUDA available:", cuda_available)
-
-# If CUDA is available, print number of GPUs and their names
-if cuda_available:
-    num_gpus = torch.cuda.device_count()
-    print(f"Number of GPUs detected: {num_gpus}")
-    for i in range(num_gpus):
-        print(f"GPU {i}: {torch.cuda.get_device_name(i)}")
-else:
-    print("No GPUs detected.")
-PYCODE
-```
-
-# 9. Produce a Portable Wheel
-(possibly needed: pip install cmake astunparse)
-
-- ```pip install build``` to generate wheels. 
-- Run and Verify
-```batch
-pip install --upgrade build
+REM --- Kick off the build (PEP517 wheel builder, no isolation) ---
 python -m build --wheel --no-isolation
+
+REM --- Cleanup (wheel is in /dist)---
+rmdir /s /q build
+
+pause
+
 ```
 
-- Uninstall, Install & verify:
-```batch
-    pip uninstall torch
-    pip install dist\torch-*.whl
-
-    The wheel lives in site-packages/torch; you can safely delete the .whl file afterward.
-```
 
 # 🎉 Congratulations!
 You now have a fully native Windows build of PyTorch for Kepler GPUs—and a portable wheel you can install anywhere. Feel free to tweak flags to suit other architectures, CPU features, or profiling needs. Enjoy!
