@@ -108,7 +108,7 @@ AttributeError: module 'distutils' has no attribute '_msvccompiler'
 -NOW it is safe to run!
 
 ##  6 Build your Wheel with flags
-batch```
+```batch
 
 @echo off
 REM --- Load MSVC compiler environment ---
