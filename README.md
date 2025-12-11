@@ -108,6 +108,7 @@ AttributeError: module 'distutils' has no attribute '_msvccompiler'
 -NOW it is safe to run!
 
 ## 5.3 Possible issue with newer versions such as 1.13+ of pytorch
+```
 These need patching to work with version 3.5 of cmake (like this) 
 #cmake_minimum_required(VERSION 3.1.3) #old one
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
@@ -127,7 +128,7 @@ REM patch third_party/foxi/CMakeLists.txt:2
 REM patch third_party/ideep/mkl-dnn/third_party/oneDNN/CMakeLists.txt:17
 REM patch third_party/fmt/CMakeLists.txt:1
 REM patch aten/src/ATen/CMakeLists.txt:1
-
+```
 
 #  6 Build your Wheel with flags
 ```batch
