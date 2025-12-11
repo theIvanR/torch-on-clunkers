@@ -31,12 +31,12 @@ Ensure all are in environment variables
 - Cuda (test with nvcc --version) and that Copy bin, include, lib/x64 (from cuDNN is pasted to) → ```C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\```
 - Ninja 
 - Cmake
-- -git
+- git
 
 Python: 
 ```batch
 pip install --upgrade pip
-pip install typing-extensions future six numpy pyyaml numpy==1.21.6
+pip install wheel typing-extensions future six numpy pyyaml numpy==1.21.6
 ```
 
 # 3. Launch x64 (or x86) Native Command Tools Prompt from Start
