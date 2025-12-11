@@ -39,10 +39,7 @@ pip install --upgrade pip
 pip install wheel typing-extensions future six numpy pyyaml numpy==1.21.6
 ```
 
-# 3. Launch x64 (or x86) Native Command Tools Prompt from Start
-We will be using this command prompt for all further steps!
-
-# 4. Clone & Prepare PyTorch (of select version) from Github
+# 3. Clone & Prepare PyTorch (of select version) from Github
 - Launch x64 Native Tools Command Prompt for VS 2019
 
 ```batch
@@ -57,11 +54,8 @@ cd pytorch
 git config --global --add safe.directory C:/Users/<You>/source/pytorch
 ```
 
-#  5. Install Python Build Dependencies
-
-## 5.0 Upgrade Pip to newest version and install extensions
-
-## 5.1 Patch Windows VC-Vars Overlay
+#  4. Apply patches
+## 4.1 Patch Windows VC-Vars Overlay
 If you run the older pytorch versions you will get a bug: 
 ```batch
 C:\Users\Admin\source\pytorch>python setup.py develop
@@ -89,7 +83,7 @@ raises:
 
 AttributeError: module 'distutils' has no attribute '_msvccompiler'
 ```
-## 5.2 Fix: Open ```tools/build_pytorch_libs.py``` in your cloned PyTorch tree and edit
+## 4.2 Fix: Open ```tools/build_pytorch_libs.py``` in your cloned PyTorch tree and edit
 -At the top, replace the import of distutils with the modern setuptools path:
 ```batch
 - from setuptools import distutils  # type: ignore[import]
@@ -102,7 +96,7 @@ AttributeError: module 'distutils' has no attribute '_msvccompiler'
 ```
 -NOW it is safe to run!
 
-## 5.3 Possible issue with newer versions such as 1.13+ of pytorch
+## 4.3 Possible issue with newer versions such as 1.13+ of pytorch
 ```
 These need patching to work with version 3.5 of cmake (like this) 
 #cmake_minimum_required(VERSION 3.1.3) #old one
@@ -125,7 +119,7 @@ REM patch third_party/fmt/CMakeLists.txt:1
 REM patch aten/src/ATen/CMakeLists.txt:1
 ```
 
-#  6 Build your Wheel with flags
+#  5. Build your Wheel with flags
 ```batch
 
 @echo off
