@@ -33,6 +33,12 @@ Ensure all are in environment variables
 - Cmake
 - -git
 
+Python: 
+```batch
+pip install --upgrade pip
+pip install typing-extensions future six numpy pyyaml numpy==1.21.6
+```
+
 # 3. Launch x64 (or x86) Native Command Tools Prompt from Start
 We will be using this command prompt for all further steps!
 
@@ -54,17 +60,6 @@ git config --global --add safe.directory C:/Users/<You>/source/pytorch
 #  5. Install Python Build Dependencies
 
 ## 5.0 Upgrade Pip to newest version and install extensions
-```batch
-pip install --upgrade pip
-pip install typing-extensions future six numpy pyyaml
-```
-
-Important: 
-install proper numpy version as otherwise it crashes (for 1.12.1 use numpy 
-```batch
-pip uninstall numpy
-pip install numpy==1.21.6
-```
 
 ## 5.1 Patch Windows VC-Vars Overlay
 If you run the older pytorch versions you will get a bug: 
