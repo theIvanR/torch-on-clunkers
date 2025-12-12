@@ -1,11 +1,11 @@
 🏗️ Build PyTorch from Source on Windows for Kepler GPUs
 
-**Target hardware:** Tesla K40c / K80 (sm_35)  
+**Target hardware:** Tesla K40c (sm_35)  
 **CUDA:** 11.4.4  
 **cuDNN:** 8.7.0  
 **Visual Studio:** 2019  
 **Python:** 3.9  
-**PyTorch version:** 1.12.x  
+**PyTorch version:** 1.12.1, 1.13, 2.0.0 confirmed working, possibly later versions as well!
 
 ---
 
@@ -26,12 +26,6 @@ NOTE: for simplicity, I used miniconda with python 3.9 and added it to path. Of 
 ---
 
 # 2. Install & Verify Prerequisites
-Ensure all are in environment variables
-- Python 
-- Cuda (test with nvcc --version) and that Copy bin, include, lib/x64 (from cuDNN is pasted to) → ```C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\```
-- Ninja 
-- Cmake
-- git
 
 Python: 
 ```batch
@@ -94,7 +88,6 @@ AttributeError: module 'distutils' has no attribute '_msvccompiler'
 -    vc_env: Dict[str, str] = distutils._msvccompiler._get_vc_env(vc_arch)
 +    vc_env: Dict[str, str] = distutils_msvccompiler._get_vc_env(vc_arch)
 ```
--NOW it is safe to run!
 
 ## 4.3 Possible issue with newer versions such as 1.13+ of pytorch
 ```
@@ -201,20 +194,3 @@ pause
 
 # 🎉 Congratulations!
 You now have a fully native Windows build of PyTorch for Kepler GPUs—and a portable wheel you can install anywhere. Feel free to tweak flags to suit other architectures, CPU features, or profiling needs. Enjoy!
-
-
-# Bonus: Rebuild with Different Flags
-```batch
-    No flags: autodetect defaults (all SM archs).
-
-    View all flags:
-
-python setup.py --help
-
-Example: target multiple archs or disable AVX:
-
-    set TORCH_CUDA_ARCH_LIST=3.5;5.0;6.1
-    set USE_AVX=0
-    set USE_FBGEMM=0
-    python setup.py develop
-```
