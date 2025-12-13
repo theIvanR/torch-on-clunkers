@@ -1,4 +1,4 @@
-# 🏗️ PyTorch on Windows for Kepler GPUs (Tesla K40c / sm_35) — Reorganized
+# 🏗️ PyTorch on Windows for Older GPUS (Kepler +)
 
 ## Quick summary (What & For whom)
 - **Goal:** Run PyTorch on Windows with Kepler GPUs (Tesla K40c, compute capability **3.5**).  
