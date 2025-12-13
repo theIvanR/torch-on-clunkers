@@ -2,7 +2,7 @@
 
 This guide describes how to build **PyTorch on Windows** for **Kepler GPUs** such as the **Tesla K40c (sm_35)**—hardware no longer supported by official wheels.
 
-**Confirmed working PyTorch versions:** 1.12.1, 1.13, 2.0.0 (later versions may work)  
+**Confirmed working PyTorch versions:** 1.12.1, 1.13, 2.0.0, 2.0.1 (later versions may work however need cuda patches coming soon)  
 **Target GPU:** Tesla K40c (Compute Capability 3.5)  
 **CUDA:** 11.4.4  
 **cuDNN:** 8.7.0  
