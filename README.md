@@ -92,10 +92,16 @@ AttributeError: module 'distutils' has no attribute '_msvccompiler'
 +    vc_env: Dict[str, str] = distutils_msvccompiler._get_vc_env(vc_arch)
 ```
 
-## 4.3 Possible issue with newer versions such as 1.13+ of pytorch
-```
-These need patching to work with version 3.5 of cmake (like this) 
-#cmake_minimum_required(VERSION 3.1.3) #old one
+## 4.3 Fix CMake Version Requirement (PyTorch 1.13+)
+
+Newer PyTorch versions may fail to configure if your environment uses CMake 3.5.  
+Update the project’s minimum version requirement:
+
+```cmake
+# Old:
+# cmake_minimum_required(VERSION 3.1.3)
+
+# Fixed:
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 ```
 
