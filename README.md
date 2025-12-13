@@ -53,7 +53,7 @@ git config --global --add safe.directory C:/Users/<You>/source/pytorch
 
 #  4. Apply patches
 ## 4.1 Patch Windows VC-Vars Overlay
-If you run the older pytorch versions you will get a bug: 
+If you run the older pytorch versions you will get a bug due to distuitils change (AttributeError: module 'distutils' has no attribute '_msvccompiler')
 ```batch
 C:\Users\Admin\source\pytorch>python setup.py develop
 Building wheel torch-1.12.0a0+git664058f
@@ -70,17 +70,7 @@ Traceback (most recent call last):
   File "C:\Users\Admin\source\pytorch\tools\build_pytorch_libs.py", line 36, in _overlay_windows_vcvars
 ```
 
-- Why? On recent Windows/python/setuptools combinations, distutils._msvccompiler._get_vc_env has moved (or been hidden), so PyTorch’s original code: 
-```batch
-from setuptools import distutils
-…
-vc_env: Dict[str, str] = distutils._msvccompiler._get_vc_env(vc_arch)
-
-raises:
-
-AttributeError: module 'distutils' has no attribute '_msvccompiler'
-```
-## 4.2 Fix: Open ```tools/build_pytorch_libs.py``` in your cloned PyTorch tree and edit
+Fix: Open ```tools/build_pytorch_libs.py``` in your cloned PyTorch tree and edit
 -At the top, replace the import of distutils with the modern setuptools path:
 ```batch
 - from setuptools import distutils  # type: ignore[import]
@@ -92,7 +82,7 @@ AttributeError: module 'distutils' has no attribute '_msvccompiler'
 +    vc_env: Dict[str, str] = distutils_msvccompiler._get_vc_env(vc_arch)
 ```
 
-## 4.3 Fix CMake Version Requirement (PyTorch 1.13+)
+## 4.2 Fix CMake Version Requirement (PyTorch 1.13+)
 
 Newer PyTorch versions may fail to configure if your environment uses CMake 3.5.  
 Update the project’s minimum version requirement:
