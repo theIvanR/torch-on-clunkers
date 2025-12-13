@@ -88,11 +88,8 @@ Newer PyTorch versions may fail to configure if your environment uses CMake 3.5.
 Update the project’s minimum version requirement:
 
 ```cmake
-# Old:
-# cmake_minimum_required(VERSION 3.1.3)
-
-# Fixed:
-cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+- cmake_minimum_required(VERSION 3.1.3)
++ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 ```
 
 To update all `cmake_minimum_required` directives across the PyTorch source tree, run the CMake patch script from the repo root:
