@@ -1,22 +1,16 @@
 # 🏗️ PyTorch on Windows for Kepler GPUs (Tesla K40c / sm_35) — Reorganized
 
-A compact, copy-paste-ready README section that tells you what you need, where to use it, and includes pre-built wheel links + quick patch instructions.
-
----
-
 ## Quick summary (What & For whom)
 - **Goal:** Run PyTorch on Windows with Kepler GPUs (Tesla K40c, compute capability **3.5**).  
 - **Recommended / tested:** PyTorch **1.12.1**, **1.13**, **2.0.0**, **2.0.1** (newer versions usually need extra CUDA patches).  
 - **Stack:** CUDA **11.4.4**, cuDNN **8.7.0**, Visual Studio **2019**, **Python 3.9**.  
-- **Supported architectures compiled into provided wheels:**  
-  `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`
 
 If you don't want to build from source, see **Pre-Built Wheels** below.
 
 ---
 
 ## 📦 Pre-Built Wheels (Python 3.9, CUDA 11.4 + cuDNN 8.7)
-> Wheels are built for Python **3.9** and include the architectures listed above (Kepler = `3.5`).
+> Wheels are built for Python **3.9** and include the architectures: `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`.
 
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
@@ -30,7 +24,6 @@ If you don't want to build from source, see **Pre-Built Wheels** below.
 pip install torch-2.0.1-cu114-sm35.whl
 ```
 
----
 
 # 1. What you need (tools & where they matter)
 
