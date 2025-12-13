@@ -10,7 +10,7 @@ If you don't want to build from source, see **Pre-Built Wheels** below.
 
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
-| 1.12.1          | 3.9    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link) |
+| 1.12.1          | 3.9    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/19enqKES7JSagDj9Yn96twlWNH5kO8yKM/view?usp=drive_link)|
 | 1.13.0          | 3.9    | 11.4.4+ | [Download wheel](https://example.com/torch-1.13.0-cu114-sm35.whl) |
 | 2.0.0           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1wIF3e6va1KJ81ExXFvU3MoNL1R6URYck/view?usp=drive_link) |
 | 2.0.1           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link]) |
