@@ -11,7 +11,7 @@ This guide describes how to build **PyTorch on Windows** for **Kepler GPUs** suc
 
 ---
 
-### 1. Required Tools
+# 1. Required Tools Overview
 
 > Note: For simplicity, this setup uses **Miniconda (Python 3.9)** added to PATH. Virtual environments or other configurations work as well.
 
