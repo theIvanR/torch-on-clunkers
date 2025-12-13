@@ -1,27 +1,30 @@
-🏗️ Build PyTorch from Source on Windows for Kepler GPUs
+## 🏗️ Building PyTorch from Source on Windows (Kepler GPUs – Tesla K40c)
 
-**Target hardware:** Tesla K40c (sm_35)  
+This guide describes how to build **PyTorch on Windows** for **Kepler GPUs** such as the **Tesla K40c (sm_35)**—hardware no longer supported by official wheels.
+
+**Confirmed working PyTorch versions:** 1.12.1, 1.13, 2.0.0 (later versions may work)  
+**Target GPU:** Tesla K40c (Compute Capability 3.5)  
 **CUDA:** 11.4.4  
 **cuDNN:** 8.7.0  
 **Visual Studio:** 2019  
-**Python:** 3.9  
-**PyTorch version:** 1.12.1, 1.13, 2.0.0 confirmed working, possibly later versions as well!
+**Python:** 3.9 (used here; other envs also possible)
 
 ---
 
-# 1. Tools & Why You Need Them
-NOTE: for simplicity, I used miniconda with python 3.9 and added it to path. Of course, different settings and virtual environments can be used. 
+### 1. Required Tools
 
-| Tool                        | Purpose                                                         |
-|-----------------------------|-----------------------------------------------------------------|
-| Visual Studio 2019         | C/C++ compiler & linker (VC++ v14.x for CUDA 11.4 compatibility) |
-| CUDA Toolkit 11.4.4        | `nvcc` compiler & GPU libraries for Kepler targets               |
-| cuDNN 8.7.0                | NVIDIA’s optimized DL primitives                                |
-| Python 3.9                 | Supported by PyTorch 1.12.x                                     |
-| Git                        | Clone repo, manage versions & submodules                        |
-| CMake                      | Generate Ninja/MSBuild project files                            |
-| Ninja                      | Fast parallel build backend                                     |
-| pip, build (PEP 517)       | Install Python deps & produce a wheel                           |
+> Note: For simplicity, this setup uses **Miniconda (Python 3.9)** added to PATH. Virtual environments or other configurations work as well.
+
+| Tool                     | Purpose                                                                  |
+|--------------------------|---------------------------------------------------------------------------|
+| **Visual Studio 2019**   | Provides MSVC (v14.x) toolchain compatible with CUDA 11.4                |
+| **CUDA Toolkit 11.4.4**  | Includes `nvcc` and GPU libraries for Kepler (`sm_35`)                    |
+| **cuDNN 8.7.0**          | NVIDIA deep-learning primitives                                           |
+| **Python 3.9**           | Supported by PyTorch 1.12.x–2.0.0                                         |
+| **Git**                  | Clone and manage the PyTorch repo + submodules                           |
+| **CMake**                | Generates build files (Ninja/MSBuild)                                     |
+| **Ninja**                | Fast parallel build backend                                               |
+| **pip / build (PEP 517)**| Installs dependencies and creates the final wheel                         |
 
 ---
 
