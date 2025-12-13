@@ -124,6 +124,9 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 
 #  5. Build your Wheel with flags (via build_torch.bat)
 Use the build_torch.bat script in either terminal or the native build environment. Edit as needed.
+```batch
+.\build_torch.bat
+```
 
 
 # 🎉 Congratulations!
