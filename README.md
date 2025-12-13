@@ -12,10 +12,10 @@ If you don't want to build from source, see **Pre-Built Wheels** below.
 
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
-| 1.12.1          | 3.9    | 11.4 | [Download wheel](https://example.com/torch-1.12.1-cu114-sm35.whl) |
-| 1.13.0          | 3.9    | 11.4 | [Download wheel](https://example.com/torch-1.13.0-cu114-sm35.whl) |
-| 2.0.0           | 3.9    | 11.4 | [Download wheel](https://example.com/torch-2.0.0-cu114-sm35.whl) |
-| 2.0.1           | 3.9    | 11.4 | [Download wheel](https://example.com/torch-2.0.1-cu114-sm35.whl) |
+| 1.12.1          | 3.9    | 11.4.4 + | [Download wheel](https://example.com/torch-1.12.1-cu114-sm35.whl) |
+| 1.13.0          | 3.9    | 11.4.4+ | [Download wheel](https://example.com/torch-1.13.0-cu114-sm35.whl) |
+| 2.0.0           | 3.9    | 11.4.4+  | [Download wheel](https://example.com/torch-2.0.0-cu114-sm35.whl) |
+| 2.0.1           | 3.9    | 11.4.4+  | [Download wheel](https://example.com/torch-2.0.1-cu114-sm35.whl) |
 
 **Install example**
 ```bash
