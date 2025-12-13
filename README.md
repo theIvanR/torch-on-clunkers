@@ -1,39 +1,67 @@
-## 🏗️ Building PyTorch from Source on Windows (Kepler GPUs – Tesla K40c)
+# 🏗️ PyTorch on Windows for Kepler GPUs (Tesla K40c / sm_35) — Reorganized
 
-This guide describes how to build **PyTorch on Windows** for **Kepler GPUs** such as the **Tesla K40c (sm_35)**—hardware no longer supported by official wheels.
-
-**Confirmed working PyTorch versions:** 1.12.1, 1.13, 2.0.0, 2.0.1 (later versions may work however need cuda patches coming soon)  
-**Target GPU:** Tesla K40c (Compute Capability 3.5)  
-**CUDA:** 11.4.4  
-**cuDNN:** 8.7.0  
-**Visual Studio:** 2019  
-**Python:** 3.9 (used here; other envs also possible)
+A compact, copy-paste-ready README section that tells you what you need, where to use it, and includes pre-built wheel links + quick patch instructions.
 
 ---
 
-# 1. Required Tools Overview
+## Quick summary (What & For whom)
+- **Goal:** Run PyTorch on Windows with Kepler GPUs (Tesla K40c, compute capability **3.5**).  
+- **Recommended / tested:** PyTorch **1.12.1**, **1.13**, **2.0.0**, **2.0.1** (newer versions usually need extra CUDA patches).  
+- **Stack:** CUDA **11.4.4**, cuDNN **8.7.0**, Visual Studio **2019**, **Python 3.9**.  
+- **Supported architectures compiled into provided wheels:**  
+  `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`
 
-> Note: For simplicity, this setup uses **Miniconda (Python 3.9)** added to PATH. Virtual environments or other configurations work as well.
-
-| Tool                     | Purpose                                                                  |
-|--------------------------|---------------------------------------------------------------------------|
-| **Visual Studio 2019**   | Provides MSVC (v14.x) toolchain compatible with CUDA 11.4                |
-| **CUDA Toolkit 11.4.4**  | Includes `nvcc` and GPU libraries for Kepler (`sm_35`)                    |
-| **cuDNN 8.7.0**          | NVIDIA deep-learning primitives                                           |
-| **Python 3.9**           | Supported by PyTorch 1.12.x–2.0.0                                         |
-| **Git**                  | Clone and manage the PyTorch repo + submodules                           |
-| **CMake**                | Generates build files (Ninja/MSBuild)                                     |
-| **Ninja**                | Fast parallel build backend                                               |
-| **pip / build (PEP 517)**| Installs dependencies and creates the final wheel                         |
+If you don't want to build from source, see **Pre-Built Wheels** below.
 
 ---
 
-# 2. Install & Verify Prerequisites
+## 📦 Pre-Built Wheels (Python 3.9, CUDA 11.4 + cuDNN 8.7)
+> Wheels are built for Python **3.9** and include the architectures listed above (Kepler = `3.5`).
 
-Python: 
-```batch
-pip install --upgrade pip
-pip install wheel typing-extensions future six numpy pyyaml numpy==1.21.6
+| PyTorch Version | Python | CUDA | Wheel |
+|-----------------|--------|------|-------|
+| 1.12.1          | 3.9    | 11.4 | [Download wheel](https://example.com/torch-1.12.1-cu114-sm35.whl) |
+| 1.13.0          | 3.9    | 11.4 | [Download wheel](https://example.com/torch-1.13.0-cu114-sm35.whl) |
+| 2.0.0           | 3.9    | 11.4 | [Download wheel](https://example.com/torch-2.0.0-cu114-sm35.whl) |
+| 2.0.1           | 3.9    | 11.4 | [Download wheel](https://example.com/torch-2.0.1-cu114-sm35.whl) |
+
+**Install example**
+```bash
+pip install torch-2.0.1-cu114-sm35.whl
+```
+
+---
+
+# 1. What you need (tools & where they matter)
+
+A quick overview of which tools are required for **building PyTorch** and which are needed only for **using the pre-built wheels**.
+
+| Tool / Item                | Needed to Build | Needed to Use Wheel |
+|----------------------------|:---------------:|:-------------------:|
+| **Visual Studio 2019 (MSVC)** | ✅ | ❌ |
+| **CUDA Toolkit 11.4.4**     | ✅ | ❌ *(driver only required)* |
+| **cuDNN 8.7.0**             | ✅ | ❌ |
+| **Python 3.9 (via miniconda)**              | ✅ | ✅ |
+| **Git**                     | ✅ | ❌ *(optional)* |
+| **CMake (≥ 3.5 recommended)** | ✅ | ❌ |
+| **Ninja**                   | ✅ | ❌ |
+| **pip / build (PEP 517)**   | ✅ | ✅ |
+
+---
+
+# 2. Install & Verify Python / pip prerequisites (on Windows)
+Create env (recommended) and install required pip packages:
+ 
+```python
+# (recommended) create a conda env and activate it, or use your existing Python 3.9
+conda create -n pytorch_k40 python=3.9 -y
+conda activate pytorch_k40
+
+# Upgrade pip and install basic build/runtime deps
+python -m pip install --upgrade pip
+pip install wheel typing-extensions future six numpy pyyaml
+# if you need a specific numpy that works with older CUDA builds:
+pip install numpy==1.21.6
 ```
 
 # 3. Clone & Prepare PyTorch (of select version) from Github
