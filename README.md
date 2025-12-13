@@ -7,8 +7,6 @@
 
 If you don't want to build from source, see **Pre-Built Wheels** below.
 
----
-
 ## 📦 Pre-Built Wheels (Python 3.9, CUDA 11.4 + cuDNN 8.7)
 > Wheels are built for Python **3.9** and include the architectures: `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`.
 
@@ -24,8 +22,9 @@ If you don't want to build from source, see **Pre-Built Wheels** below.
 pip install torch-2.0.1-cu114-sm35.whl
 ```
 
+---
 
-# 1. What you need (tools & where they matter)
+# 1. What and where do you need to build your own wheels? 
 
 A quick overview of which tools are required for **building PyTorch** and which are needed only for **using the pre-built wheels**.
 
@@ -40,7 +39,6 @@ A quick overview of which tools are required for **building PyTorch** and which 
 | **Ninja**                   | ✅ | ❌ |
 | **pip / build (PEP 517)**   | ✅ | ✅ |
 
----
 
 # 2. Install & Verify Python / pip prerequisites (on Windows)
 Create env (recommended) and install required pip packages:
