@@ -58,7 +58,7 @@ conda install -c conda-forge libuv=1.39
 Create env (recommended) and install required pip packages:
  
 ```python
-# (recommended) create a conda env and activate it, or use your existing Python 3.9
+# (recommended) create a conda env and activate it, or use your existing Python 3.9+ 
 conda create -n pytorch_k40 python=3.9 -y
 conda activate pytorch_k40
 
@@ -137,7 +137,8 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch --dry
 python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 ```
 
-
+## 4.3 Building pytorch above 2.0.1? 
+Signifficant changes have been made to architecture and more extensive patching requried. See below, coming soon. 
 
 #  5. Build your Wheel with flags (via build_torch.bat)
 Use the build_torch.bat script in either terminal or the native build environment. Edit as needed.
