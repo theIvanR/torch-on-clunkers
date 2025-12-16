@@ -50,9 +50,10 @@ conda activate pytorch_k40
 
 # Upgrade pip and install basic build/runtime deps
 python -m pip install --upgrade pip
-pip install wheel typing-extensions future six numpy pyyaml
-# if you need a specific numpy that works with older CUDA builds:
-pip install numpy==1.21.6
+pip install wheel typing-extensions future six numpy==1.26.4 pyyaml build ninja cmake astunparse mkl-static mkl-include
+
+# If using distributed:
+conda install -c conda-forge libuv=1.39
 ```
 
 # 3. Clone & Prepare PyTorch (of select version) from Github
