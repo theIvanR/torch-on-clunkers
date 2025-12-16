@@ -5,8 +5,8 @@
 
 If you don't want to build from source, see **Pre-Built Wheels** below.
 
-## 📦 Pre-Built Wheels (Python 3.9, CUDA 11.4 + cuDNN 8.7)
-> Wheels are built for Python **3.9** and include the architectures: `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`.
+## 📦 Pre-Built Wheels: 
+> Wheels are for architectures: `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`.
 
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
@@ -14,6 +14,14 @@ If you don't want to build from source, see **Pre-Built Wheels** below.
 | 1.13.0          | 3.9    | 11.4.4+ | [Download wheel](https://drive.google.com/file/d/1v9UNkUJ77TZivOMZrUDrDVXA-eVRFub5/view?usp=drive_link)|
 | 2.0.0           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1wIF3e6va1KJ81ExXFvU3MoNL1R6URYck/view?usp=drive_link) |
 | 2.0.1           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link]) |
+
+Newer Wheels? 
+| PyTorch Version | Python | CUDA | Wheel |
+|-----------------|--------|------|-------|
+| 1.12.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/19enqKES7JSagDj9Yn96twlWNH5kO8yKM/view?usp=drive_link)|
+| 1.13.0          | 3.10    | 11.4.4+ | [Download wheel](https://drive.google.com/file/d/1v9UNkUJ77TZivOMZrUDrDVXA-eVRFub5/view?usp=drive_link)|
+| 2.0.0           | 3.10    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1wIF3e6va1KJ81ExXFvU3MoNL1R6URYck/view?usp=drive_link) |
+| 2.0.1           | 3.10    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link]) |
 
 **Install example**
 ```bash
@@ -134,3 +142,7 @@ Use the build_torch.bat script in either terminal or the native build environmen
 
 # 🎉 Congratulations!
 You now have a fully native Windows build of PyTorch for Kepler GPUs—and a portable wheel you can install anywhere. Feel free to tweak flags to suit other architectures, CPU features, or profiling needs. Enjoy!
+
+
+# Building Newer Versions of Torch (>2.0.1) 
+*MASSIVE DUMPSTERFIRE* on windows, coming soon, 
