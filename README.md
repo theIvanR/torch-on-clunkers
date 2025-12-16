@@ -15,13 +15,17 @@ If you don't want to build from source, see **Pre-Built Wheels** below.
 | 2.0.0           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1wIF3e6va1KJ81ExXFvU3MoNL1R6URYck/view?usp=drive_link) |
 | 2.0.1           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link]) |
 
-Newer Wheels? 
+Warning: these wheels are built without MKL, I will repatch them later to use MKL. 
+---
+
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
 | 1.12.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/19enqKES7JSagDj9Yn96twlWNH5kO8yKM/view?usp=drive_link)|
 | 1.13.0          | 3.10    | 11.4.4+ | [Download wheel](https://drive.google.com/file/d/1v9UNkUJ77TZivOMZrUDrDVXA-eVRFub5/view?usp=drive_link)|
 | 2.0.0           | 3.10    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1wIF3e6va1KJ81ExXFvU3MoNL1R6URYck/view?usp=drive_link) |
 | 2.0.1           | 3.10    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link]) |
+
+
 
 **Install example**
 ```bash
