@@ -3,7 +3,7 @@
 - **Recommended / tested:** PyTorch **1.12.1**, **1.13**, **2.0.0**, **2.0.1** (newer versions usually need extra CUDA patches).  
 - **Stack:** CUDA **11.4.4**, cuDNN **8.7.0**, Visual Studio **2019**, **Python 3.9+**.  
 
-# 0: Pre-Built Wheels: 
+# 0. Pre-Built Wheels: 
 Before building from source, check if a *prebuilt wheel is available for your setup*.
 
 > Wheels are for architectures: `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`.
