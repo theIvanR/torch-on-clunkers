@@ -86,24 +86,7 @@ git config --global --add safe.directory C:/Users/<You>/source/pytorch
 ```
 
 #  4. Apply patches
-## 4.1 Patch Windows VC-Vars Overlay
-If you run the older pytorch versions you will get a bug due to distuitils change (AttributeError: module 'distutils' has no attribute '_msvccompiler')
-```batch
-C:\Users\Admin\source\pytorch>python setup.py develop
-Building wheel torch-1.12.0a0+git664058f
--- Building version 1.12.0a0+git664058f
-Traceback (most recent call last):
-  File "C:\Users\Admin\source\pytorch\setup.py", line 944, in <module>
-    build_deps()
-  File "C:\Users\Admin\source\pytorch\setup.py", line 400, in build_deps
-    build_caffe2(version=version,
-  File "C:\Users\Admin\source\pytorch\tools\build_pytorch_libs.py", line 81, in build_caffe2
-    my_env = _create_build_env()
-  File "C:\Users\Admin\source\pytorch\tools\build_pytorch_libs.py", line 67, in _create_build_env
-    my_env = _overlay_windows_vcvars(my_env)
-  File "C:\Users\Admin\source\pytorch\tools\build_pytorch_libs.py", line 36, in _overlay_windows_vcvars
-```
-
+## 4.1 Patch Windows VC-Vars Overlay (distutils change)
 Fix: Open ```tools/build_pytorch_libs.py``` in your cloned PyTorch tree and edit
 -At the top, replace the import of distutils with the modern setuptools path:
 ```batch
@@ -117,16 +100,13 @@ Fix: Open ```tools/build_pytorch_libs.py``` in your cloned PyTorch tree and edit
 ```
 
 ## 4.2 Patch CMake Version Requirement (via patch_cmake_minimum.py)
-
 Newer PyTorch versions may fail to configure if your environment uses CMake 3.5.  
-Update the project’s minimum version requirement:
-
 ```cmake
 - cmake_minimum_required(VERSION 3.1.3)
 + cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 ```
 
-To update all `cmake_minimum_required` directives across the PyTorch source tree, run the CMake patch script from the repo root:
+Fix: Update all via `cmake_minimum_required` directives across the PyTorch source tree, run the CMake patch script from the repo root:
 * Recommended to run with dry run first
 ```batch
 python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch --dry
