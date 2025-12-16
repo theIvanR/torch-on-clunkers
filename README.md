@@ -7,7 +7,7 @@ If you don't want to build from source, see **Pre-Built Wheels** below.
 
 ## 📦 Pre-Built Wheels: 
 > Wheels are for architectures: `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`.
-
+---
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
 | 1.12.1          | 3.9    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/19enqKES7JSagDj9Yn96twlWNH5kO8yKM/view?usp=drive_link)|
@@ -15,7 +15,6 @@ If you don't want to build from source, see **Pre-Built Wheels** below.
 | 2.0.0           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1wIF3e6va1KJ81ExXFvU3MoNL1R6URYck/view?usp=drive_link) |
 | 2.0.1           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link]) |
 
-Warning: these wheels are built without MKL, I will repatch them later to use MKL. 
 ---
 
 | PyTorch Version | Python | CUDA | Wheel |
