@@ -1,11 +1,11 @@
 # 🏗️ PyTorch on Windows for Older GPUS (Kepler +)
 - **Goal:** Run PyTorch on Windows with Kepler GPUs (Tesla K40c, compute capability **3.5**).  
 - **Recommended / tested:** PyTorch **1.12.1**, **1.13**, **2.0.0**, **2.0.1** (newer versions usually need extra CUDA patches).  
-- **Stack:** CUDA **11.4.4**, cuDNN **8.7.0**, Visual Studio **2019**, **Python 3.9**.  
+- **Stack:** CUDA **11.4.4**, cuDNN **8.7.0**, Visual Studio **2019**, **Python 3.9+**.  
 
-If you don't want to build from source, see **Pre-Built Wheels** below.
+# 0: Pre-Built Wheels: 
+Before building from source, check if a *prebuilt wheel is available for your setup*.
 
-## 📦 Pre-Built Wheels: 
 > Wheels are for architectures: `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`.
 > WARNING: python 3.9 wheels are built without MKL, I will fix this mistake soon, others are with it, patched links will be uploaded soon
 ---
@@ -17,42 +17,44 @@ If you don't want to build from source, see **Pre-Built Wheels** below.
 | 2.0.1           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link]) |
 
 ---
+# 1. Installing Dependencies
 
-| PyTorch Version | Python | CUDA | Wheel |
-|-----------------|--------|------|-------|
-| 1.12.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/19enqKES7JSagDj9Yn96twlWNH5kO8yKM/view?usp=drive_link)|
-| 1.13.0          | 3.10    | 11.4.4+ | [Download wheel](https://drive.google.com/file/d/1v9UNkUJ77TZivOMZrUDrDVXA-eVRFub5/view?usp=drive_link)|
-| 2.0.0           | 3.10    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1wIF3e6va1KJ81ExXFvU3MoNL1R6URYck/view?usp=drive_link) |
-| 2.0.1           | 3.10    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link]) |
+Depending on whether you are using a **prebuilt wheel** or **building from source**, the required dependencies differ.
 
+## External / System Dependencies
 
+| Tool / Item                  | Needed to Build | Needed to Use Wheel |
+|-------------------------------|:---------------:|:-----------------:|
+| **Visual Studio 2019 (MSVC)** | ✅ | ❌ |
+| **CUDA Toolkit 11.4.4**       | ✅ | ❌ *(driver only required)* |
+| **cuDNN 8.7.0**               | ✅ | ❌ |
+| **Git**                        | ✅ | ❌ *(optional)* |
+| **CMake (≥ 3.5)**             | ✅ | ❌ |
+| **Ninja**                      | ✅ | ❌ |
 
-**Install example**
+## Python / Pip Dependencies
+
+| Package / Tool                | Needed to Build | Needed to Use Wheel |
+|-------------------------------|:---------------:|:-----------------:|
+| **Python 3.9 (via Miniconda)** | ✅ | ✅ |
+| **pip / build (PEP 517)**     | ✅ | ✅ |
+| **wheel**                     | ✅ | ✅ |
+| **typing-extensions**         | ✅ | ✅ |
+| **future**                     | ✅ | ✅ |
+| **six**                        | ✅ | ✅ |
+| **numpy==1.26.4**             | ✅ | ✅ |
+| **pyyaml**                     | ✅ | ✅ |
+| **astunparse**                 | ✅ | ✅ |
+| **mkl-static**                 | ✅ | ✅ |
+| **mkl-include**                | ✅ | ✅ |
+
+Optional for distributed builds:
+
 ```bash
-pip install <filepath>
+conda install -c conda-forge libuv=1.39
 ```
 
-NOTE: I will be making more wheels and putting them here soon. 
-
----
-
-# 1. What and where do you need to build your own wheels? 
-
-A quick overview of which tools are required for **building PyTorch** and which are needed only for **using the pre-built wheels**.
-
-| Tool / Item                | Needed to Build | Needed to Use Wheel |
-|----------------------------|:---------------:|:-------------------:|
-| **Visual Studio 2019 (MSVC)** | ✅ | ❌ |
-| **CUDA Toolkit 11.4.4**     | ✅ | ❌ *(driver only required)* |
-| **cuDNN 8.7.0**             | ✅ | ❌ |
-| **Python 3.9 (via miniconda)**              | ✅ | ✅ |
-| **Git**                     | ✅ | ❌ *(optional)* |
-| **CMake (≥ 3.5 recommended)** | ✅ | ❌ |
-| **Ninja**                   | ✅ | ❌ |
-| **pip / build (PEP 517)**   | ✅ | ✅ |
-
-
-# 2. Install & Verify Python / pip prerequisites (on Windows)
+# 2. Create Python Environment & Install Dependencies (Windows)
 Create env (recommended) and install required pip packages:
  
 ```python
