@@ -125,10 +125,7 @@ Use the build_torch.bat script in either terminal or the native build environmen
 ```batch
 .\build_patched.bat
 ```
-
-
-# 🎉 Congratulations!
-You now have a fully native Windows build of PyTorch for Kepler GPUs—and a portable wheel you can install anywhere. Feel free to tweak flags to suit other architectures, CPU features, or profiling needs. Enjoy!
+🎉 Congratulations! You now have a fully native Windows build of PyTorch for Kepler GPUs—and a portable wheel you can install anywhere. Feel free to tweak flags to suit other architectures, CPU features, or profiling needs. Enjoy!
 
 
 # Building Newer Versions of Torch (>2.0.1) 
