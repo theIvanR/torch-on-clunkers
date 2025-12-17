@@ -41,10 +41,12 @@ if exist build rmdir /s /q build
 mkdir build
 cd build
 
+REM --- with explicit disable of eigen!---
 cmake .. -G "Ninja" ^
   -DUSE_CUDA=ON ^
   -DUSE_CUDNN=ON ^
   -DUSE_MKL=ON ^
+  -DUSE_EIGEN_FOR_BLAS=OFF ^
   -DBLAS=MKL ^
   -DUSE_MKLDNN=ON ^
   -DMKL_ROOT="%MKLROOT%" ^
