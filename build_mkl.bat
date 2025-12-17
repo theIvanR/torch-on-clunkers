@@ -42,6 +42,7 @@ mkdir build
 cd build
 
 REM --- with explicit disable of eigen!---
+REM --- consider adding AVX flags here---
 cmake .. -G "Ninja" ^
   -DUSE_CUDA=ON ^
   -DUSE_CUDNN=ON ^
