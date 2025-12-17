@@ -31,6 +31,7 @@ Depending on whether you are using a **prebuilt wheel** or **building from sourc
 | **Visual Studio 2019 (MSVC)** | ✅ | ❌ |
 | **CUDA Toolkit 11.4.4**       | ✅ | ❌ *(driver only required)* |
 | **cuDNN 8.7.0**               | ✅ | ❌ |
+| **oneAPI (Intel)              | ✅ | ❌ *(mkl via pip only required, poorly documented on pytorch page!)*
 | **Git**                        | ✅ | ❌ *(optional)* |
 | **CMake (≥ 3.5)**             | ✅ | ❌ |
 | **Ninja**                      | ✅ | ❌ |
