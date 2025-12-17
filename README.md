@@ -10,7 +10,7 @@ Before building from source, check if a *prebuilt wheel is available for your se
 > ⚠️ WARNING: Python 3.9 wheels are built without MKL. I will fix this soon; others include MKL. Patched links will be uploaded shortly.
 ---
 
-Base Pytorch Wheels: Python + openBLAS
+Base Pytorch Wheels: Python + openBLAS (universal, slower)
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
 | 1.12.1          | 3.9    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/19enqKES7JSagDj9Yn96twlWNH5kO8yKM/view?usp=drive_link)|
@@ -18,6 +18,9 @@ Base Pytorch Wheels: Python + openBLAS
 | 2.0.0           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1wIF3e6va1KJ81ExXFvU3MoNL1R6URYck/view?usp=drive_link) |
 | 2.0.1           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link]) |
 | 2.0.1           | 3.10    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1E3BSuDeth-9bpi_NoWetHymLrI8IO37B/view?usp=drive_link]) |
+
+High Performance Wheels: Python + MKL (intel, fast)
+
 
 ---
 # 1. Installing Dependencies
@@ -125,10 +128,11 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 Signifficant changes have been made to architecture and more extensive patching requried. See below, coming soon. 
 
 #  5. Build your Wheel with flags (via build_torch.bat)
-Use the build_torch.bat script in either terminal or the native build environment. Edit as needed.
-```batch
-.\build_patched.bat
-```
+Select for which system you want to build pytorch and act accordingly. Launch builder scripts as Admin in Terminal.
+- If Intel based: use MKL builder
+- Otherwise, stick to openBLAS
+
+
 🎉 Congratulations! You now have a fully native Windows build of PyTorch for Kepler GPUs—and a portable wheel you can install anywhere. Feel free to tweak flags to suit other architectures, CPU features, or profiling needs. Enjoy!
 
 
