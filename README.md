@@ -18,7 +18,9 @@ Base Pytorch Wheels: Python + openBLAS (universal, slower)
 | 2.0.1           | 3.10    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1E3BSuDeth-9bpi_NoWetHymLrI8IO37B/view?usp=drive_link]) |
 
 High Performance Wheels: Python + MKL (intel, fast)
-
+| PyTorch Version | Python | CUDA | Wheel |
+|-----------------|--------|------|-------|
+| 2.0.1          | 3.10    | 11.4.4 + | [Download wheel](nolink)|
 
 ---
 # 1. Installing Dependencies
