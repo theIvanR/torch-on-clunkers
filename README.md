@@ -6,8 +6,6 @@
 Before building from source, check if a *prebuilt wheel is available for your setup*.
 
 > Wheels are for architectures: `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`.
->
-> ⚠️ WARNING: Python 3.9 wheels are built without MKL. I will fix this soon; others include MKL. Patched links will be uploaded shortly.
 ---
 
 Base Pytorch Wheels: Python + openBLAS (universal, slower)
