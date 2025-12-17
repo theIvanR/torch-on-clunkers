@@ -5,7 +5,8 @@
 # 0. Pre-Built Wheels: 
 Before building from source, check if a *prebuilt wheel is available for your setup*.
 
-> Wheels are for architectures: `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`.
+> Wheels are built for architectures: `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`.
+> Wheels are built for all cpu architectures (no AVX used, can be enabled via flag)
 ---
 
 Base Pytorch Wheels: Python + openBLAS (universal, slower)
