@@ -9,12 +9,15 @@ Before building from source, check if a *prebuilt wheel is available for your se
 >
 > ⚠️ WARNING: Python 3.9 wheels are built without MKL. I will fix this soon; others include MKL. Patched links will be uploaded shortly.
 ---
+
+Base Pytorch Wheels: Python + openBLAS
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
 | 1.12.1          | 3.9    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/19enqKES7JSagDj9Yn96twlWNH5kO8yKM/view?usp=drive_link)|
 | 1.13.0          | 3.9    | 11.4.4+ | [Download wheel](https://drive.google.com/file/d/1v9UNkUJ77TZivOMZrUDrDVXA-eVRFub5/view?usp=drive_link)|
 | 2.0.0           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1wIF3e6va1KJ81ExXFvU3MoNL1R6URYck/view?usp=drive_link) |
 | 2.0.1           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link]) |
+| 2.0.1           | 3.10    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1E3BSuDeth-9bpi_NoWetHymLrI8IO37B/view?usp=drive_link]) |
 
 ---
 # 1. Installing Dependencies
