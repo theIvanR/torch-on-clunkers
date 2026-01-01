@@ -36,7 +36,7 @@ Depending on whether you are using a **prebuilt wheel** or **building from sourc
 | **Visual Studio 2019 (MSVC)** | ✅ | ❌ |
 | **CUDA Toolkit 11.4.4**       | ✅ | ❌ *(driver only required)* |
 | **cuDNN 8.7.0**               | ✅ | ❌ |
-| **oneAPI (Intel)              | ✅ | ❌ *(poorly documented, use oneapi for mkl as the pip is unreliable `pip install mkl mkl-static mkl-include` )*
+| **oneAPI (Intel)**              | ✅ | ❌ *(poorly documented, use oneapi for mkl as the pip is unreliable `pip install mkl mkl-static mkl-include` )*
 | **Git**                        | ✅ | ❌ *(optional)* |
 | **CMake (≥ 3.5)**             | ✅ | ❌ |
 | **Ninja**                      | ✅ | ❌ |
