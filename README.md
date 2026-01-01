@@ -36,7 +36,7 @@ Depending on whether you are using a **prebuilt wheel** or **building from sourc
 | **Visual Studio 2019 (MSVC)** | ✅ | ❌ |
 | **CUDA Toolkit 11.4.4**       | ✅ | ❌ *(driver only required)* |
 | **cuDNN 8.7.0**               | ✅ | ❌ |
-| **???(debug)oneAPI (Intel)              | ✅ | ❌ *(mkl via pip only required, poorly documented on pytorch page!)*
+| **oneAPI (Intel)              | ✅ | ❌ *(poorly documented, use oneapi for mkl as the pip is unreliable `pip install mkl mkl-static mkl-include` )*
 | **Git**                        | ✅ | ❌ *(optional)* |
 | **CMake (≥ 3.5)**             | ✅ | ❌ |
 | **Ninja**                      | ✅ | ❌ |
@@ -73,7 +73,7 @@ conda activate pytorch_k40
 
 # Upgrade pip and install basic build/runtime deps
 python -m pip install --upgrade pip
-pip install wheel typing-extensions future six numpy==1.26.4 pyyaml build ninja cmake astunparse mkl-static mkl-include
+pip install wheel typing-extensions future six numpy==1.26.4 pyyaml build ninja cmake astunparse
 
 # If using distributed:
 conda install -c conda-forge libuv=1.39
