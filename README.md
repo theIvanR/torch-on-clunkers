@@ -10,16 +10,7 @@ Before building from source, check if a *prebuilt wheel is available for your se
 > Wheels are built for all cpu architectures (no AVX used) if you need specific CPU enhancements (eg AVX512) rebuild using instructions
 ---
 
-Base Pytorch Wheels: Python + openBLAS (universal, slower)
-| PyTorch Version | Python | CUDA | Wheel |
-|-----------------|--------|------|-------|
-| 1.12.1          | 3.9    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/19enqKES7JSagDj9Yn96twlWNH5kO8yKM/view?usp=drive_link)|
-| 1.13.0          | 3.9    | 11.4.4+ | [Download wheel](https://drive.google.com/file/d/1v9UNkUJ77TZivOMZrUDrDVXA-eVRFub5/view?usp=drive_link)|
-| 2.0.0           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1wIF3e6va1KJ81ExXFvU3MoNL1R6URYck/view?usp=drive_link) |
-| 2.0.1           | 3.9    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1GFxlv39rYmxOm9XAInrkDVSCxcsUqVwy/view?usp=drive_link]) |
-| 2.0.1           | 3.10    | 11.4.4+  | [Download wheel](https://drive.google.com/file/d/1E3BSuDeth-9bpi_NoWetHymLrI8IO37B/view?usp=drive_link]) |
-
-High Performance Wheels: Python + MKL (intel, fast)
+High Performance Wheels: Python + MKL + CUDA
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
 | 2.0.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/13JcoGi8pZ3-Mn4iA2ooBkOgGDVlUbCUr/view?usp=drive_link)|
