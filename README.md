@@ -13,7 +13,7 @@ Before building from source, check if a *prebuilt wheel is available for your se
 High Performance Wheels: Python + MKL + CUDA
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
-| 2.0.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/13JcoGi8pZ3-Mn4iA2ooBkOgGDVlUbCUr/view?usp=drive_link)|
+| 2.0.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1a4A3hXzg_mEiN-GVh8tYBmak4L7HIIRH/view?usp=drive_link)|
 
 (new wheels coming soon)
 
