@@ -24,6 +24,8 @@ High Performance Wheels: Python + MKL (intel, fast)
 |-----------------|--------|------|-------|
 | 2.0.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/13JcoGi8pZ3-Mn4iA2ooBkOgGDVlUbCUr/view?usp=drive_link)|
 
+(new wheels coming soon)
+
 ---
 # 1. Installing Dependencies
 
