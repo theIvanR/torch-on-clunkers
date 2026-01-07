@@ -45,8 +45,14 @@ set "MKLROOT=C:\Program Files (x86)\Intel\oneAPI\mkl\latest"
 set "MKL_INCLUDE_DIR=%MKLROOT%\include"
 set "MKL_LIBRARY_DIR=%MKLROOT%\lib\intel64"
 
-REM Add runtime DLLs to PATH (important)
-set "PATH=%MKLROOT%\redist\intel64;%PATH%"
+REM Add runtime DLLs to PATH (important!)
+REM Patch: include 'bin' because redist may not exist
+set "PATH=%MKLROOT%\bin;%PATH%"
+
+REM Optional: if you have redist (older oneAPI versions)
+if exist "%MKLROOT%\redist\intel64" (
+    set "PATH=%MKLROOT%\redist\intel64;%PATH%"
+)
 
 REM Ensure CMake can find MKL
 if defined CMAKE_PREFIX_PATH (
