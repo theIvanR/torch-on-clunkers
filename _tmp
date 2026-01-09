@@ -84,17 +84,27 @@ set CMAKE_ARGS=^
     -DUSE_XNNPACK=OFF
 
 REM ================================
+
+REM A: Smart cmake configure (no rebuild)
 echo [INFO] Configuring cmake into "%BUILD_DIR%"...
-cmake -S . -B "%BUILD_DIR%" %CMAKE_ARGS%
-if errorlevel 1 (
-    echo [ERROR] CMake configuration failed.
-    popd
-    pause
-    exit /b 1
+
+if not exist "%BUILD_DIR%\CMakeCache.txt" (
+    echo [INFO] First configure...
+    cmake -S . -B "%BUILD_DIR%" %CMAKE_ARGS%
+    if errorlevel 1 (
+        echo [ERROR] CMake configuration failed.
+        popd
+        pause
+        exit /b 1
+    )
+) else (
+    echo [INFO] Reusing existing configuration.
 )
 
+
+REM B: Build in DIR and make Wheel
 echo [INFO] Building (cmake --build "%BUILD_DIR%")...
-cmake --build "%BUILD_DIR%" --parallel %NUMBER_OF_PROCESSORS% --verbose
+cmake --build "%BUILD_DIR%" --parallel %NUMBER_OF_PROCESSORS%
 if errorlevel 1 (
     echo [ERROR] Build failed.
     popd
