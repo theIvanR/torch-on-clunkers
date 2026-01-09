@@ -125,6 +125,7 @@ Signifficant changes have been made to architecture and more extensive patching 
 # 5 Apply secondary patches
 
 ## 5.1 FlatBuffers stl_emulation.h
+```batch
 
 File:
 third_party/flatbuffers/include/flatbuffers/stl_emulation.h
@@ -135,14 +136,13 @@ Patch:
 @@
 -const size_type count_;
 +size_type count_;
-
+```
 Reason:
 Intel compiler complains about 'const' here; removing it allows build.
-
 ---
 
 ## 5.2 JIT static ForkedSubgraphSRLauncher
-
+```batch
 File:
 torch/csrc/jit/runtime/static/... (full path to class file)
 
@@ -159,10 +159,11 @@ Patch:
 Reason:
 TORCH_API requests external linkage, but anonymous namespace is internal linkage.
 Removing TORCH_API resolves IntelLLVM conflicts.
-
+```
 ---
 
 ## 5.3 Functorch arena.h (__builtin_clz fix)
+```batch
 
 File:
 functorch/csrc/dim/arena.h
@@ -201,7 +202,7 @@ Patch:
     return 1 << (32 - nzeros);
  }
 *** End Patch
-
+```
 Reason:
 IntelLLVM complains because __builtin_clz collides with compiler built-ins.
 Renamed to functorch_clz, added guard, and handled x == 0 safely.
