@@ -1,0 +1,126 @@
+@echo off
+setlocal
+
+REM --- User configuration (optionally pass pytorch dir as first argument) ---
+set "DEFAULT_SRC_DIR=C:\Users\%USERNAME%\source\pytorch"
+if "%~1"=="" (
+    set "SRC_DIR=%DEFAULT_SRC_DIR%"
+) else (
+    set "SRC_DIR=%~1"
+)
+if not exist "%SRC_DIR%" (
+    echo [ERROR] Source directory "%SRC_DIR%" does not exist.
+    exit /b 1
+)
+pushd "%SRC_DIR%" >nul 2>&1 || (
+    echo [ERROR] Failed to enter "%SRC_DIR%".
+    exit /b 1
+)
+
+REM -------------------------
+REM Build flags / options
+REM -------------------------
+set "BUILD_DIR=build"
+set "KEEP_BUILD=0"
+
+set "CL=/bigobj %CL% /Ot /fp:fast /arch:AVX"
+
+REM ====== CUDA / cuDNN
+set "CUDA_ROOT=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.4"
+set "CUDNN_ROOT=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDNN/cudnn-windows-x86_64-8.7.0.84_cuda11-archive"
+set "TORCH_CUDA_ARCH_LIST=6.0;6.1;7.0;7.5"  REM trim old archs unless you need Kepler
+
+REM === Intel oneAPI: call setvars to make runtimes available (CRUCIAL)
+call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat" >nul
+
+REM === Intel MKL Flags (link threaded MKL)
+set USE_MKL=1
+set BLAS=MKL
+set MKL_THREADING=intel_thread
+set "MKLROOT=C:\Program Files (x86)\Intel\oneAPI\mkl\latest"
+set "MKL_INCLUDE_DIR=%MKLROOT%\include"
+set "MKL_LIBRARY_DIR=%MKLROOT%\lib\intel64"
+
+REM Put MKL + compiler runtime on PATH for this session (make sure libiomp5md is visible)
+set "PATH=%MKLROOT%\bin;%MKLROOT%\redist\intel64;C:\Program Files (x86)\Intel\oneAPI\compiler\latest\bin;%PATH%"
+
+REM Runtime thread control (optional; tune to your machine)
+REM set MKL_NUM_THREADS=12
+REM set OMP_NUM_THREADS=12
+REM set KMP_AFFINITY=granularity=fine,compact,1,0
+
+REM ====== Other options
+set USE_DISTRIBUTED=OFF
+set USE_TENSORPIPE=OFF
+
+REM Remove old build dir unless KEEP_BUILD=1 (you already do this)
+if exist "%BUILD_DIR%" (
+    if "%KEEP_BUILD%"=="1" (
+        echo [INFO] Keeping existing build directory "%BUILD_DIR%".
+    ) else (
+        rmdir /s /q "%BUILD_DIR%"
+    )
+)
+
+REM ================================
+REM 0: CMake Arguments (pass as command line)
+REM Note: if you want to FORCE MKL BLAS usage for GEMM, set USE_MKLDNN=OFF below.
+REM Use xnnpack only if you have avx512
+set CMAKE_ARGS=^
+    -DCMAKE_BUILD_TYPE=Release ^
+    -G "Ninja" ^
+    -DCMAKE_PREFIX_PATH="%MKLROOT%;%CUDA_ROOT%;%CUDNN_ROOT%" ^
+    -DUSE_CUDA=ON ^
+    -DUSE_CUDNN=ON ^
+    -DCUDA_TOOLKIT_ROOT_DIR="%CUDA_ROOT%" ^
+    -DCUDNN_ROOT="%CUDNN_ROOT%" ^
+    -DTORCH_CUDA_ARCH_LIST=%TORCH_CUDA_ARCH_LIST% ^
+    -DUSE_MKL=ON ^
+    -DBLAS=MKL ^
+    -DMKL_ROOT="%MKLROOT%" ^
+    -DMKL_INCLUDE_DIR="%MKL_INCLUDE_DIR%" ^
+    -DMKL_LIBRARY_DIR="%MKL_LIBRARY_DIR%" ^
+    -DUSE_MKLDNN=ON ^
+    -DUSE_XNNPACK=OFF
+
+REM ================================
+echo [INFO] Configuring cmake into "%BUILD_DIR%"...
+cmake -S . -B "%BUILD_DIR%" %CMAKE_ARGS%
+if errorlevel 1 (
+    echo [ERROR] CMake configuration failed.
+    popd
+    pause
+    exit /b 1
+)
+
+echo [INFO] Building (cmake --build "%BUILD_DIR%")...
+cmake --build "%BUILD_DIR%" --parallel %NUMBER_OF_PROCESSORS% --verbose
+if errorlevel 1 (
+    echo [ERROR] Build failed.
+    popd
+    pause
+    exit /b 1
+)
+
+echo [INFO] Installing into prefix (cmake --build --target install)...
+cmake --build "%BUILD_DIR%" --config Release --target install --parallel %NUMBER_OF_PROCESSORS%
+if errorlevel 1 (
+    echo [ERROR] Install step failed.
+    popd
+    pause
+    exit /b 1
+)
+
+set DISTUTILS_USE_SDK=1
+echo [INFO] Building Python wheel...
+python setup.py bdist_wheel
+if errorlevel 1 (
+    echo [ERROR] Wheel build failed.
+    popd
+    pause
+    exit /b 1
+)
+
+echo [SUCCESS] Wheel built successfully.
+popd
+exit /b 0
