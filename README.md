@@ -73,7 +73,7 @@ conda install -c conda-forge libuv=1.39
 ```
 
 # 3. Clone & Prepare PyTorch (of select version) from Github
-- Launch Terminal as Administrator
+- Launch x64 native development tools command prompt as Administrator (important, NOT the intel one due to conflicts)
 
 ```batch
 :: 1. Go to your desired source directory
@@ -119,10 +119,7 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch --dry
 python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 ```
 
-## 4.3 Building pytorch above 2.0.1? 
-Signifficant changes have been made to architecture and more extensive patching requried. See below, coming soon. 
-
-# 5 Apply secondary patches
+# 5 Apply secondary patches (if needed)
 
 ## 5.1 FlatBuffers stl_emulation.h
 ```batch
