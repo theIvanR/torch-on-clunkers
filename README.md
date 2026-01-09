@@ -136,9 +136,11 @@ Patch:
 @@
 -const size_type count_;
 +size_type count_;
-```
+
 Reason:
 Intel compiler complains about 'const' here; removing it allows build.
+```
+
 ---
 
 ## 5.2 JIT static ForkedSubgraphSRLauncher
