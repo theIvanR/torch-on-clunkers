@@ -10,7 +10,7 @@ Before building from source, check if a *prebuilt wheel is available for your se
 > Wheels are built for all cpu architectures (no AVX used) if you need specific CPU enhancements (eg AVX512) rebuild using instructions
 ---
 
-High Performance Wheels: Python + MKL + CUDA
+High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
 | 2.0.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1a4A3hXzg_mEiN-GVh8tYBmak4L7HIIRH/view?usp=drive_link)|
