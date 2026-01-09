@@ -87,7 +87,7 @@ cd pytorch
 git config --global --add safe.directory C:/Users/<You>/source/pytorch
 ```
 
-#  4. Apply patches
+#  4. Apply Primary patches
 ## 4.1 Patch Windows VC-Vars Overlay (distutils change)
 Fix: Open ```tools/build_pytorch_libs.py``` in your cloned PyTorch tree and edit
 -At the top, replace the import of distutils with the modern setuptools path:
@@ -122,7 +122,92 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 ## 4.3 Building pytorch above 2.0.1? 
 Signifficant changes have been made to architecture and more extensive patching requried. See below, coming soon. 
 
-#  5. Build your Wheel with flags (via build_torch.bat)
+# 5 Apply secondary patches
+
+## 5.1 FlatBuffers stl_emulation.h
+
+File:
+third_party/flatbuffers/include/flatbuffers/stl_emulation.h
+
+Patch:
+
+--- n third_party/flatbuffers/include/flatbuffers/stl_emulation.h
+@@
+-const size_type count_;
++size_type count_;
+
+Reason:
+Intel compiler complains about 'const' here; removing it allows build.
+
+---
+
+## 5.2 JIT static ForkedSubgraphSRLauncher
+
+File:
+torch/csrc/jit/runtime/static/... (full path to class file)
+
+Patch:
+
+-namespace {
+-class TORCH_API ForkedSubgraphSRLauncher {
++namespace {
++class ForkedSubgraphSRLauncher {
+    // ... class definition ...
+};
+} // namespace
+
+Reason:
+TORCH_API requests external linkage, but anonymous namespace is internal linkage.
+Removing TORCH_API resolves IntelLLVM conflicts.
+
+---
+
+## 5.3 Functorch arena.h (__builtin_clz fix)
+
+File:
+functorch/csrc/dim/arena.h
+
+Patch:
+
+*** Begin Patch
+*** Update File: functorch/csrc/dim/arena.h
+@@
+ #ifdef _WIN32
+ #include <intrin.h>
+-// https://stackoverflow.com/questions/355967/how-to-use-msvc-intrinsics-to-get-the-equivalent-of-this-gcc-code
+-inline unsigned int __builtin_clz(unsigned int x) {
+-    unsigned long r = 0;
+-    _BitScanReverse(&r, x);
+-    return (31 - r);
+-}
++#ifndef FUNCTORCH_CLZ_DEFINED
++#define FUNCTORCH_CLZ_DEFINED
++// Provide a project-local count-leading-zeros implementation for Windows.
++// Do NOT use the name __builtin_clz (reserved / collides with compiler builtins).
++inline unsigned int functorch_clz(unsigned int x) {
++    if (x == 0u) {
++        return 32u;
++    }
++    unsigned long r = 0;
++    _BitScanReverse(&r, x);
++    return (31u - r);
++}
++#endif
+ #endif
+@@
+ inline int round2min8(int num) {
+-   int nzeros = __builtin_clz((num - 1)|4);
++   int nzeros = functorch_clz((num - 1) | 4u);
+    return 1 << (32 - nzeros);
+ }
+*** End Patch
+
+Reason:
+IntelLLVM complains because __builtin_clz collides with compiler built-ins.
+Renamed to functorch_clz, added guard, and handled x == 0 safely.
+
+
+#  6. Build your Wheel with flags (via build_torch.bat)
 Select for which system you want to build pytorch and act accordingly. Launch builder scripts as Admin in Terminal.
 - If Intel based: use MKL builder
 - Otherwise, stick to openBLAS
