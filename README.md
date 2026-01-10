@@ -5,17 +5,18 @@
 # 0. Pre-Built Wheels: 
 Before building from source, check if a *prebuilt wheel is available for your setup*.
 
-> Wheels are built for architectures: `TORCH_CUDA_ARCH_LIST = 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5`.
-> 
-> Wheels are built for all cpu architectures (no AVX used) if you need specific CPU enhancements (eg AVX512) rebuild using instructions
 ---
-
 High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
 | 2.0.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1iiFDPHr5cioNi4LxNWycgExIxmYloZ0I/view?usp=drive_link)|
+(3.11 coming soon)
 
-(New wheels coming soon)
+Compatibility Wheels (openBLAS, SSE41)
+
+
+
+
 
 ---
 # 1. Installing Dependencies
