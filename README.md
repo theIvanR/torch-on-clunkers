@@ -208,10 +208,35 @@ Renamed to functorch_clz, added guard, and handled x == 0 safely.
 
 
 #  6. Build your Wheel with flags (via build_torch.bat)
-Select for which system you want to build pytorch and act accordingly. Launch builder scripts as Admin in Terminal.
-- If Intel based: use MKL builder
-- Otherwise, stick to openBLAS
-Once wheel is built, enjoy, test with the sanity checker code.
+Select for which system you want to build PyTorch and act accordingly.
+
+Launch builder scripts as **Administrator** in the terminal.
+
+### Backend Selection
+
+- **Intel CPU** → use the **MKL** builder  
+- **Non-Intel CPU** → use **OpenBLAS**
+
+### Optimization Flags
+
+Tune build flags based on your hardware:
+
+- **Intel CPU**
+  - Enable MKL
+  - Prefer AVX / AVX2 / AVX-512 when available
+- **Non-Intel CPU**
+  - Use OpenBLAS
+- **AVX-512 capable CPUs**
+  - Enable `XNNPACK`
+  - Enable advanced vector kernels
+- **Older CPUs**
+  - Disable `XNNPACK`
+  - Avoid AVX-512 specific kernels
+
+### Final Step
+
+Once the wheel is built, test the installation using the provided **sanity checker** script and enjoy 🚀
+
 
 
 🎉 Congratulations! You now have a fully native Windows build of PyTorch for Kepler GPUs—and a portable wheel you can install anywhere. Feel free to tweak flags to suit other architectures, CPU features, or profiling needs. Enjoy!
