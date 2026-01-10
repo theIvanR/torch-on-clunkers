@@ -13,9 +13,9 @@ Before building from source, check if a *prebuilt wheel is available for your se
 High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
-| 2.0.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1a4A3hXzg_mEiN-GVh8tYBmak4L7HIIRH/view?usp=drive_link)|
+| 2.0.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1iiFDPHr5cioNi4LxNWycgExIxmYloZ0I/view?usp=drive_link)|
 
-(new wheels coming soon)
+(New wheels coming soon)
 
 ---
 # 1. Installing Dependencies
