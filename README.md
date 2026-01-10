@@ -87,7 +87,7 @@ cd pytorch
 git config --global --add safe.directory C:/Users/<You>/source/pytorch
 ```
 
-#  4. Apply Primary patches
+#  4. Apply Primary patches (mandatory)
 ## 4.1 Patch Windows VC-Vars Overlay (distutils change)
 Fix: Open ```tools/build_pytorch_libs.py``` in your cloned PyTorch tree and edit
 -At the top, replace the import of distutils with the modern setuptools path:
@@ -211,6 +211,7 @@ Renamed to functorch_clz, added guard, and handled x == 0 safely.
 Select for which system you want to build pytorch and act accordingly. Launch builder scripts as Admin in Terminal.
 - If Intel based: use MKL builder
 - Otherwise, stick to openBLAS
+Once wheel is built, enjoy, test with the sanity checker code.
 
 
 🎉 Congratulations! You now have a fully native Windows build of PyTorch for Kepler GPUs—and a portable wheel you can install anywhere. Feel free to tweak flags to suit other architectures, CPU features, or profiling needs. Enjoy!
