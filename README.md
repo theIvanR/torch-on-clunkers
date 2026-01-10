@@ -237,10 +237,5 @@ Tune build flags based on your hardware:
 
 Once the wheel is built, test the installation using the provided **sanity checker** script and enjoy 🚀
 
-
-
-🎉 Congratulations! You now have a fully native Windows build of PyTorch for Kepler GPUs—and a portable wheel you can install anywhere. Feel free to tweak flags to suit other architectures, CPU features, or profiling needs. Enjoy!
-
-
 # Building Newer Versions of Torch (>2.0.1) 
 *MASSIVE DUMPSTERFIRE* on windows, coming soon, 
