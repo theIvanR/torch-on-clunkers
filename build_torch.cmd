@@ -1,5 +1,3 @@
-REM Pytorch builder script
-
 @echo off
 setlocal EnableExtensions EnableDelayedExpansion
 
@@ -18,7 +16,7 @@ set ICC=
 
 
 REM ===============================
-REM Restore MKL only
+REM A: Set MKL Paths
 REM ===============================
 set "MKLROOT=C:\Program Files (x86)\Intel\oneAPI\mkl\latest"
 set "CMAKE_PREFIX_PATH=%MKLROOT%"
@@ -27,73 +25,57 @@ set "INCLUDE=%INCLUDE%;%MKLROOT%\include"
 set "PATH=%PATH%;%MKLROOT%\bin"
 
 
+REM ===============================
+REM B: Set Cuda Paths
+REM ===============================
+set "CUDA_ROOT=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.4"
+set "CUDNN_ROOT=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDNN/cudnn-windows-x86_64-8.7.0.84_cuda11-archive"
+
 
 REM ===============================
-REM Paths
+REM C: Set Torch Paths and Investigate in them
 REM ===============================
 set "SRC_DIR=C:/Users/%USERNAME%/source/pytorch"
 set "BUILD_DIR=build"
 
-set "CUDA_ROOT=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.4"
-set "CUDNN_ROOT=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDNN/cudnn-windows-x86_64-8.7.0.84_cuda11-archive"
-
-REM ===============================
-REM Go to source
-REM ===============================
 pushd "%SRC_DIR%" || (
     echo [ERROR] Unable to enter %SRC_DIR%
     exit /b 1
 )
 
-REM ===============================
-REM Clean build
-REM ===============================
-if exist "%BUILD_DIR%" rmdir /s /q "%BUILD_DIR%"
+REM Optional clean build artifacts
+REM if exist "%BUILD_DIR%" rmdir /s /q "%BUILD_DIR%"
+
 
 REM ===============================
-REM PyTorch options
-REM ===============================
-set USE_DISTRIBUTED=OFF
-set USE_TENSORPIPE=OFF
-
-REM ===============================
-REM Configure
+REM D: Configure Cmake for Pytorch
 REM ===============================
 cmake -S . -B "%BUILD_DIR%" ^
     -G Ninja ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DCUDA_TOOLKIT_ROOT_DIR="%CUDA_ROOT%" ^
     -DCUDNN_ROOT="%CUDNN_ROOT%" ^
-    -DTORCH_CUDA_ARCH_LIST=3.5 ^
+    -DTORCH_CUDA_ARCH_LIST="3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5" ^
     -DUSE_CUDA=ON ^
     -DUSE_CUDNN=ON ^
     -DUSE_MKL=ON ^
     -DBLAS=MKL ^
-    -DUSE_XNNPACK=OFF
+    -DUSE_XNNPACK=OFF ^
+    -DUSE_DISTRIBUTED=OFF ^
+    -DUSE_TENSORPIPE=OFF
 
 REM ===============================
-REM Build CUDA first (fast fail)
+REM Build CUDA first, then remaining files
 REM ===============================
 cmake --build "%BUILD_DIR%" --target torch_cuda -- -j %NUMBER_OF_PROCESSORS%
-
-REM ===============================
-REM Full build
-REM ===============================
 cmake --build "%BUILD_DIR%" -- -j %NUMBER_OF_PROCESSORS%
 
 REM ===============================
-REM Python wheel
+REM Python wheel and celebrate
 REM ===============================
-REM cd "%BUILD_DIR%"
-REM set DISTUTILS_USE_SDK=1
-REM python ..\setup.py bdist_wheel
 set DISTUTILS_USE_SDK=1
 python setup.py bdist_wheel
 
-
-REM ===============================
-REM Done
-REM ===============================
 popd
 echo.
 echo ===== BUILD COMPLETE =====
