@@ -38,7 +38,6 @@ REM ===============================
 set "SRC_DIR=C:/Users/%USERNAME%/source/pytorch"
 set "BUILD_DIR=build"
 
-
 pushd "%SRC_DIR%" || (
     echo [ERROR] Unable to enter %SRC_DIR%
     exit /b 1
