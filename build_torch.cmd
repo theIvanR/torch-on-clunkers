@@ -38,7 +38,10 @@ REM ===============================
 set "SRC_DIR=C:/Users/%USERNAME%/source/pytorch"
 set "BUILD_DIR=build"
 
-pushd "%SRC_DIR%" || echo [ERROR] Failed to enter source dir & exit /b 1
+pushd "%SRC_DIR%" || (
+    echo [ERROR] Unable to enter %SRC_DIR%
+    exit /b 1
+)
 
 REM Optional clean build artifacts
 REM if exist "%BUILD_DIR%" rmdir /s /q "%BUILD_DIR%"
@@ -47,8 +50,6 @@ REM if exist "%BUILD_DIR%" rmdir /s /q "%BUILD_DIR%"
 REM ===============================
 REM D: Configure Cmake for Pytorch
 REM ===============================
-set "CL=/bigobj %CL% /Ot /fp:fast"
-
 cmake -S . -B "%BUILD_DIR%" ^
     -G Ninja ^
     -DCMAKE_BUILD_TYPE=Release ^
