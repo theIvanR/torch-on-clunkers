@@ -13,8 +13,12 @@ High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 (3.11 coming soon)
 
 Compatibility Wheels (openBLAS, SSE41)
-
-
+```batch
+target with: 
+-DCMAKE_C_FLAGS="/arch:SSE4.1 ^
+-DCMAKE_CXX_FLAGS="/arch:SSE4.1
+ flags in cmake
+```
 
 
 
