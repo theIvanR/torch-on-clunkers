@@ -35,47 +35,19 @@ Depending on whether you are using a **prebuilt wheel** or **building from sourc
 | **Visual Studio 2019 (MSVC)** | ✅ | ❌ |
 | **CUDA Toolkit 11.4.4**       | ✅ | ❌ *(driver only required)* |
 | **cuDNN 8.7.0**               | ✅ | ❌ |
-| **oneAPI (Intel)**              | ✅ | ❌ *(poorly documented, use oneapi for mkl as the pip is unreliable `pip install mkl mkl-static mkl-include` )*
+| **oneAPI (Intel)**              | ✅ | ❌ 
 | **Git**                        | ✅ | ❌ *(optional)* |
 | **CMake (≥ 3.5)**             | ✅ | ❌ |
 | **Ninja**                      | ✅ | ❌ |
 
-## Python / Pip Dependencies
-
-| Package / Tool                | Needed to Build | Needed to Use Wheel |
-|-------------------------------|:---------------:|:-----------------:|
-| **Python 3.9 (via Miniconda)** | ✅ | ✅ |
-| **pip / build (PEP 517)**     | ✅ | ✅ |
-| **wheel**                     | ✅ | ✅ |
-| **typing-extensions**         | ✅ | ✅ |
-| **future**                     | ✅ | ✅ |
-| **six**                        | ✅ | ✅ |
-| **numpy==1.26.4**             | ✅ | ✅ |
-| **pyyaml**                     | ✅ | ✅ |
-| **astunparse**                 | ✅ | ✅ |
-| **mkl-static**                 | ✅ | ✅ |
-| **mkl-include**                | ✅ | ✅ |
-
-Optional for distributed builds:
-
-```bash
-conda install -c conda-forge libuv=1.39
-```
 
 # 2. Create Python Environment & Install Dependencies (Windows)
 Create env (recommended) and install required pip packages:
  
 ```python
-# (recommended) create a conda env and activate it, or use your existing Python 3.9+ 
-conda create -n pytorch_k40 python=3.9 -y
-conda activate pytorch_k40
-
 # Upgrade pip and install basic build/runtime deps
 python -m pip install --upgrade pip
 pip install wheel typing-extensions future six numpy==1.26.4 pyyaml build ninja cmake astunparse
-
-# If using distributed:
-conda install -c conda-forge libuv=1.39
 ```
 
 # 3. Clone & Prepare PyTorch (of select version) from Github
