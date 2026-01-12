@@ -1,10 +1,88 @@
 # Steps to make a wheel on windows
 
-# Congfigure System Priors
+# 0: Configure System Priors
 
+## 0.1 Miniconda
+A: Configure robust builder with (mini) conda
+- Install (newest) miniconda from the repo
+Do NOT register to path or register as default!!! (only shortcuts and cleanup)
 
+B: create environment for your python version (3.9-3.11) and activate
+	conda create -n py311 python=3.11
+	conda activate py311
 
+C: install dependencies: 
+```batch
+pip install wheel typing-extensions future six numpy==1.26.4 pyyaml build ninja cmake astunparse
+111
 
+## 0.2 GIT
+- git clone your thingy in source
+```batch
+:: 1. Go to your desired source directory
+cd C:\Users\<You>\source
+
+:: 2. Clone PyTorch at the specific tag
+git clone --recursive https://github.com/pytorch/pytorch.git --branch v2.0.1
+cd pytorch
+
+:: 3. Mark the directory as safe (Windows Git safety check)
+git config --global --add safe.directory C:/Users/<You>/source/pytorch
+```
+
+### 0.3 Patch Windows VC-Vars Overlay (distutils change)
+Fix: Open ```tools/build_pytorch_libs.py``` in your cloned PyTorch tree and edit
+-At the top, replace the import of distutils with the modern setuptools path:
+```batch
+- from setuptools import distutils  # type: ignore[import]
++ from setuptools._distutils import _msvccompiler as distutils_msvccompiler # modern setuptools relocation of _msvccompiler
+```
+-In the _overlay_windows_vcvars function, update the call to use our new alias:
+```batch
+-    vc_env: Dict[str, str] = distutils._msvccompiler._get_vc_env(vc_arch)
++    vc_env: Dict[str, str] = distutils_msvccompiler._get_vc_env(vc_arch)
+```
+
+### 0.4 Patch CMake Version Requirement (via patch_cmake_minimum.py)
+Newer PyTorch versions may fail to configure if your environment uses CMake 3.5.  
+```cmake
+- cmake_minimum_required(VERSION 3.1.3)
++ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+```
+
+Fix: Update all via `cmake_minimum_required` directives across the PyTorch source tree, run the CMake patch script from the repo root:
+* Recommended to run with dry run first
+```batch
+python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch --dry
+```
+
+* Then proceed to full run if satisfied
+```batch
+python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
+```
+
+# 1: Install Executables to Build
+
+## A: Visual Studio
+- Install **Visual Studio 2019** with **Desktop C++ development** options.
+- [Visual Studio 2019 Download Link](https://visualstudio.microsoft.com/vs/older-downloads/)
+
+## B: Intel OneAPI
+- Install the **latest Intel OneAPI** from the official website.
+- Only needed if you want **MKL / BLAS acceleration**.
+- Paths must be correctly appended in your build script:
+  - `INCLUDE`
+  - `LIB`
+  - `PATH`
+
+## C: CUDA Driver and Toolkit
+- **Use DDU** (Display Driver Uninstaller) to clean any existing NVIDIA drivers first.
+- Install the **NVIDIA display driver** of your choice (for example, `463.15` for Kepler K40s).
+- Install the **CUDA Toolkit** of your choice (for example, `11.4.4` for Kepler K40s).
+- Ensure that `nvcc.exe` exists in the CUDA `bin` directory.
+
+## D: cuDNN
+- Copy cuDNN **directly into the CUDA folder**, **not anywhere else**:
 
 
 
