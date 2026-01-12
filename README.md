@@ -91,7 +91,7 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 - Install **Visual Studio 2019** with **Desktop C++ development** options.
 - [Visual Studio 2019 Download Link](https://visualstudio.microsoft.com/vs/older-downloads/)
 
-## B: Intel OneAPI
+## B: Intel OneAPI (link)
 - Install the **latest Intel OneAPI** from the official website.
 - Only needed if you want **MKL / BLAS acceleration**.
 - Paths must be correctly appended in your build script:
@@ -99,17 +99,18 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
   - `LIB`
   - `PATH`
 
-## C: CUDA Driver and Toolkit
+## C: CUDA Driver and Toolkit (link cuda, link toolkit)
 - **Use DDU** (Display Driver Uninstaller) to clean any existing NVIDIA drivers first.
 - Install the **NVIDIA display driver** of your choice (for example, `463.15` for Kepler K40s).
 - Install the **CUDA Toolkit** of your choice (for example, `11.4.4` for Kepler K40s).
 - Ensure that `nvcc.exe` exists in the CUDA `bin` directory.
 
-## D: cuDNN
+## D: cuDNN (link)
 - Copy cuDNN **directly into the CUDA folder**, **not anywhere else**:
 
-
-
+# 2: Run Build script
+- open your selected conda environment (with dependencies installed)
+- run build_torch.cmd script
 
 
 
