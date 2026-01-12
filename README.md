@@ -27,15 +27,15 @@ target with:
 # 0: Configure System Priors
 
 ## 0.1 Miniconda
-A: Configure robust builder with (mini) conda
+### A: Configure robust builder with (mini) conda
 - Install (newest) miniconda from the repo
-Do NOT register to path or register as default!!! (only shortcuts and cleanup)
+- Do NOT register to path or register as default!!! (only shortcuts and cleanup)
 
-B: create environment for your python version (3.9-3.11) and activate
+### B: create environment for your python version (3.9-3.11) and activate
 	conda create -n py311 python=3.11
 	conda activate py311
 
-C: install dependencies: 
+### C: install dependencies 
 ```batch
 pip install wheel typing-extensions future six numpy==1.26.4 pyyaml build ninja cmake astunparse
 ```
@@ -109,8 +109,11 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 - Copy cuDNN **directly into the CUDA folder**, **not anywhere else**:
 
 # 2: Run Build script
-- open your selected conda environment (with dependencies installed)
+- open anaconda prompt
+- select your environment (py311)
+- initialize via batch```call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat```
 - run build_torch.cmd script
+- Enjoy
 
 
 
