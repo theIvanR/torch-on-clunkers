@@ -41,7 +41,7 @@ pip install wheel typing-extensions future six numpy==1.26.4 pyyaml build ninja 
 ```
 
 ## 0.2 GIT
-- git clone your thingy in source
+- Install git from internet and run: 
 ```batch
 :: 1. Go to your desired source directory
 cd C:\Users\<You>\source
