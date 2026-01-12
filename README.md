@@ -117,7 +117,7 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 
 
 
-
+# Old, ignore for now
 
 # 🏗️ PyTorch on Windows for Older GPUS (Kepler +)
 - **Goal:** Run PyTorch on Windows with Kepler GPUs (Tesla K40c, compute capability **3.5**).  
