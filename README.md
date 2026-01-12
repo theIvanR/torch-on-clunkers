@@ -1,26 +1,13 @@
-Needs maajor rework for even higher performance. TLDR, if issue arises with: 
+# Steps to make a wheel on windows
 
-1: 
-python -c "import torch; print('torch', torch.__version__); print('cuda available:', torch.cuda.is_available())"
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "C:\Users\Admin\miniconda3\envs\py310\lib\site-packages\torch\__init__.py", line 133, in <module>
-    raise err
-OSError: [WinError 126] The specified module could not be found. Error loading "C:\Users\Admin\miniconda3\envs\py310\lib\site-packages\torch\lib\backend_with_compiler.dll" or one of its dependencies.
+# Congfigure System Priors
 
 
-2: missing files for backend_with_compiler.dll
-nvToolsExt64_1.dll
-cudnn64_8.dll
 
-so: dir's fail: 
-dir "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\bin\nvToolsExt64_1.dll"
-dir "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\bin\cudnn64_8.dll"
 
-fix: 
-paste cudnn into cuda 114 to fix. 
 
-(will add guide on how to do as this also tripped me up)
+
+
 
 
 
