@@ -20,6 +20,11 @@ target with:
 -DCMAKE_CXX_FLAGS="/arch:SSE4.1
  flags in cmake
 ```
+(coming soon)
+
+## Dependencies to run: 
+- Cuda driver >470 and CC>= 35
+- python
 
 ---
 # How to Make your own wheels?
@@ -111,15 +116,42 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 # 2: Run Build script
 - open anaconda prompt
 - select your environment (py311)
-- initialize (64 bit) via batch```call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat```
+- initialize (64 bit) via
+```batch
+call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat
+```
 - run build_torch.cmd script
 - Enjoy (and test)
-batch```
+```batch
 python -c "import torch; print('torch', torch.__version__); print('cuda available:', torch.cuda.is_available())"
 ```
 
 # 3: Known issues
-## 
+## OSError: [WinError 126]
+```batch
+Running: 
+python -c "import torch; print('torch', torch.__version__); print('cuda available:', torch.cuda.is_available())"
+
+Produces: 
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\Admin\miniconda3\envs\py310\lib\site-packages\torch\__init__.py", line 133, in <module>
+    raise err
+OSError: [WinError 126] The specified module could not be found. Error loading "C:\Users\Admin\miniconda3\envs\py310\lib\site-packages\torch\lib\backend_with_compiler.dll" or one of its dependencies.
+```
+Cause: nvcc was in the wrong place. Walk with dependency analyzer to see: 
+2: missing files for backend_with_compiler.dll
+nvToolsExt64_1.dll -> from internet (optional profiler)
+cudnn64_8.dll -> from cudnn very important
+
+Check them -> missing!
+```batch
+dir "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\bin\nvToolsExt64_1.dll"
+dir "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4\bin\cudnn64_8.dll"
+```
+
+fix: 
+paste cudnn into cuda 114 to fix. Optionally paste profiler as well, however due to varying versions I recommend to avoid it and only paste cudnn64_8.dll from cudnn
 
 
 
