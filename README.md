@@ -111,9 +111,15 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 # 2: Run Build script
 - open anaconda prompt
 - select your environment (py311)
-- initialize via batch```call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat```
+- initialize (64 bit) via batch```call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat```
 - run build_torch.cmd script
-- Enjoy
+- Enjoy (and test)
+batch```
+python -c "import torch; print('torch', torch.__version__); print('cuda available:', torch.cuda.is_available())"
+```
+
+# 3: Known issues
+## 
 
 
 
