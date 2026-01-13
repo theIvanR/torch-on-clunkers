@@ -52,11 +52,9 @@ pip install wheel typing-extensions future six numpy==1.26.4 pyyaml build ninja 
 cd C:\Users\<You>\source
 
 :: 2. Clone PyTorch at the specific tag
+git config --system core.longpaths true
 git clone --recursive https://github.com/pytorch/pytorch.git --branch v2.0.1
-cd pytorch
 
-:: 3. Mark the directory as safe (Windows Git safety check)
-git config --global --add safe.directory C:/Users/<You>/source/pytorch
 ```
 
 ### 0.3 Patch Windows VC-Vars Overlay (distutils change)
