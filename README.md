@@ -12,7 +12,7 @@ High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 |-----------------|--------|------|-------|
 | 2.0.1          | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1pTHEKC8rJKIXElbleDfcoquPj5E8bTzi/view?usp=drive_link)|
 | 2.0.1          | 3.10    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1iiFDPHr5cioNi4LxNWycgExIxmYloZ0I/view?usp=drive_link)|
-
+(no XNNPACK)
 
 
 
@@ -128,6 +128,17 @@ call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary
 ```batch
 python -c "import torch; print('torch', torch.__version__); print('cuda available:', torch.cuda.is_available())"
 ```
+
+# 2.5: Experiment with other flags and architectures
+- no avx for example
+- with xxnpack, etc
+
+
+
+
+
+
+
 
 # 3: Known issues
 ## OSError: [WinError 126]
