@@ -1,4 +1,5 @@
 REM Minimal Fixed Fallback Version 311 (change to yours in 2.5)
+REM No XNNPACK, pure fallback test
 
 @echo off
 setlocal EnableExtensions EnableDelayedExpansion
@@ -132,4 +133,5 @@ REM python -c "import torch; print('torch', torch.__version__); print('cuda avai
 popd
 echo.
 echo ===== BUILD COMPLETE =====
+
 exit /b 0
