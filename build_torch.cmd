@@ -1,3 +1,6 @@
+REM Robust Torch Builder for maximal wheel performance
+
+
 @echo off
 setlocal EnableExtensions EnableDelayedExpansion
 
@@ -67,7 +70,7 @@ cmake -S . -B "%BUILD_DIR%" ^
     -DUSE_CUDNN=ON ^
     -DUSE_MKL=ON ^
     -DBLAS=MKL ^
-    -DUSE_XNNPACK=OFF ^
+    -DUSE_XNNPACK=ON ^
     -DUSE_DISTRIBUTED=OFF ^
     -DUSE_TENSORPIPE=OFF
 
