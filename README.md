@@ -27,7 +27,7 @@ target with:
 - python
 
 ---
-# How to Make your own wheels?
+# How to Make your own wheels? [ <= version 2.0.1]
 
 # 0: Configure System Priors
 
