@@ -1,7 +1,7 @@
 # 🏗️ PyTorch on Windows for Older GPUS (Kepler +)
 - **Goal:** Run PyTorch on Windows with Kepler GPUs (Tesla K40c, compute capability **3.5**).  
 - **Stack:** Pytorch **1.12.1 - 2.0.1**, CUDA **11.4.4**, cuDNN **8.7.0+**, Visual Studio **2019**, **Intel oneAPI**, **Python 3.9+**.  
-- ** Arch List** CUDA 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5
+- **Arch List** CUDA 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5
 
 # 0. Pre-Built Wheels: 
 Before building from source, check if a *prebuilt wheel is available for your setup*.
@@ -41,6 +41,8 @@ target with:
 	conda activate py311
 
 ### C: install dependencies 
+Preferably install via dependecy folder in pytorch, alternatively as a fallback use: 
+
 ```batch
 pip install wheel typing-extensions future six numpy==1.26.4 pyyaml build ninja cmake astunparse
 ```
@@ -57,7 +59,7 @@ git clone --recursive https://github.com/pytorch/pytorch.git --branch v2.0.1
 
 ```
 
-### 0.3 Patch Windows VC-Vars Overlay (distutils change)
+### 0.3 Patch Windows VC-Vars Overlay (distutils change, only needed in pytorch below about 2.0.1)
 Fix: Open ```tools/build_pytorch_libs.py``` in your cloned PyTorch tree and edit
 -At the top, replace the import of distutils with the modern setuptools path:
 ```batch
@@ -108,17 +110,36 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 - Install the **CUDA Toolkit** of your choice (for example, `11.4.4` for Kepler K40s).
 - Ensure that `nvcc.exe` exists in the CUDA `bin` directory.
 
+**NOTE**: For newer cuda toolkits (11.7,11.8) while these support the kepler k40 the driver does not. In order to use them, install a previous cuda toolkit (11.4) with driver and then update to toolkit of choice and select to not install driver!
+
 ## D: cuDNN (link)
 - Copy cuDNN **directly into the CUDA folder**, **not anywhere else**:
 
 # 2: Run Build script
 - open anaconda prompt
+```anaconda prompt```
+
 - select and activate your environment (py311)
-- initialize (64 bit) via
+```conda activate py311```
+
+- initialize (64 bit) builder of your choice via
 ```batch
 call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat
 ```
-- run build_torch.cmd script. If you are facing issues with version selection in copy, try the fixed fallback.
+- run build_torch.cmd script.
+```batch
+build_torch.cmd
+```
+NOTE: 
+1: If you are facing issues with python version, try the fixed version fallback (ie if you have a different name then py311 or similar)
+
+2: If you are planning to build a newer version of pytorch (say 2.7.1) update your cuda toolkit to 11.7.1 / 11.8 as these support kepler 2.0 cc35 and are required for bfloat patch. 
+```batch
+set "CUDA_ROOT=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.4"
+=>
+set "CUDA_ROOT=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.7"
+```
+
 - Enjoy (and test)
 ```batch
 python -c "import torch; print('torch', torch.__version__); print('cuda available:', torch.cuda.is_available())"
