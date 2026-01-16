@@ -4,7 +4,7 @@
 - **Arch List** CUDA 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5
 
 # 0. Pre-Built Wheels: 
-Before building from source, check if a *prebuilt wheel is available for your setup*.
+Before building from source, check if a *prebuilt wheel is available for your setup*. I recommend using 2.0.1 as this is the stable and well tested wheel for all arches. 2.7.1 wheel is currently a WIP and I am in active contact with pytorch developers in order to improve the wheel. 
 
 ---
 High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
