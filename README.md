@@ -10,7 +10,7 @@ Before building from source, check if a *prebuilt wheel is available for your se
 High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
-| 2.7.1          | 3.11    | 11.4.4 + | [Download wheel](coming soon)|
+| 2.7.1 (cc35 only, all arches coming soon)         | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1rbzhEiiY5Xe-2TQ1ejAlmBwRbUx-EMHr/view?usp=sharing)|
 | 2.0.1          | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1L84dnAnMdekX7rJjnxz0vKcmR2LHvfen/view?usp=sharing)|
 
 NOTE TO RUN 2.7.1 YOU MUST INSTALL THE REQUIREMENTS (pip install -r"path-to-requirements')
