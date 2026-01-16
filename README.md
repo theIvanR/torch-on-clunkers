@@ -103,8 +103,11 @@ exit /b 0
 OSError: [WinError 126] The specified module could not be found. Error loading "C:\Users\Admin\miniconda3\envs\py311\Lib\site-packages\torch\lib\aoti_custom_ops.dll" or one of its dependencies.
 
 The dependencies it calls are: 
+
 → mkl_intel_thread.2.dll
+
 → libiomp5md.dll
+
 → cupti64_2022.2.1.dll
 
 these can be added either to the install root of the wheel (in this case where aoti lives) OR you can patch them to wheel manually via opening it and packing the 3 DLL's into torch/lib and repackaging wheel. Currently a better fix is being investigated, this is all highly experimental
