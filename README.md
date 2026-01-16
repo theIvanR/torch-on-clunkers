@@ -99,8 +99,10 @@ exit /b 0
 ```
 
 2: This will produce a wheel, however there is a bug with windows as linking broken. 
-- something weird is happening with linking aoti custom ops: 
+- something weird is happening with linking aoti custom ops:
+ ```batch
 OSError: [WinError 126] The specified module could not be found. Error loading "C:\Users\Admin\miniconda3\envs\py311\Lib\site-packages\torch\lib\aoti_custom_ops.dll" or one of its dependencies.
+```
 
 The dependencies it calls are: 
 
