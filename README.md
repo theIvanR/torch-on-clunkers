@@ -33,6 +33,49 @@ target with:
 Steps to build (very ugly, work in progress) 
 
 0: Install all the same tools, except cuda 11.7 (and if you want a newer cudnn). Important, with cuda 11.7/11.8 and cc35: Install toolkit and Plugin, NOT DRIVER!! Once installed, run the patch cmake min ONLY. Next, install dependencies from txt file
+```batch
+astunparse==1.6.3
+build==1.4.0
+certifi==2026.1.4
+charset-normalizer==3.4.4
+cmake==4.2.1
+colorama==0.4.6
+expecttest==0.3.0
+filelock==3.20.3
+fsspec==2026.1.0
+hypothesis==6.150.2
+idna==3.11
+intel-cmplr-lib-ur==2025.3.1
+intel-openmp==2025.3.1
+Jinja2==3.1.6
+lintrunner==0.12.11
+MarkupSafe==3.0.3
+mkl==2025.3.0
+mkl-include==2025.3.0
+mkl-static==2025.3.0
+mpmath==1.3.0
+networkx==3.6.1
+ninja==1.13.0
+numpy==2.4.1
+onemkl-license==2025.3.0
+optree==0.18.0
+packaging==25.0
+psutil==7.2.1
+pyproject_hooks==1.2.0
+PyYAML==6.0.3
+requests==2.32.5
+six==1.17.0
+sortedcontainers==2.4.0
+sympy==1.14.0
+tbb==2022.3.0
+tbb-devel==2022.3.0
+tcmlib==1.4.1
+types-dataclasses==0.6.6
+typing_extensions==4.15.0
+umf==1.0.2
+urllib3==2.6.3
+```
+
 
 1: Run the builder (note, VERY experimental at the moment)
 ```batch
