@@ -112,7 +112,44 @@ The dependencies it calls are:
 
 → cupti64_2022.2.1.dll
 
-these can be added either to the install root of the wheel (in this case where aoti lives) OR you can patch them to wheel manually via opening it and packing the 3 DLL's into torch/lib and repackaging wheel. Currently a better fix is being investigated, this is all highly experimental
+these can be added either to the install root of the wheel (in this case where aoti lives) OR you can patch them to wheel manually via opening it and packing the 3 DLL's into torch/lib and repackaging wheel. Currently a better fix is being investigated, this is all highly experimental. 
+
+To open wheel, I used 7zip. 
+
+To package wheel I used this: 
+```python
+# make_wheel.py
+import os
+import sys
+from zipfile import ZipFile
+
+if len(sys.argv) != 3:
+    print("Usage: python make_wheel.py <source_folder> <output_wheel>")
+    sys.exit(1)
+
+src_folder = sys.argv[1]
+wheel_name = sys.argv[2]
+
+# Ensure the source folder exists
+if not os.path.isdir(src_folder):
+    print(f"Error: source folder '{src_folder}' does not exist")
+    sys.exit(1)
+
+# Convert to absolute paths
+src_folder = os.path.abspath(src_folder)
+wheel_name = os.path.abspath(wheel_name)
+
+# Create the wheel
+with ZipFile(wheel_name, 'w') as zf:
+    for root, dirs, files in os.walk(src_folder):
+        for f in files:
+            filepath = os.path.join(root, f)
+            # Compute relative path inside the wheel
+            arcname = os.path.relpath(filepath, src_folder)
+            zf.write(filepath, arcname)
+
+print(f"Wheel created: {wheel_name}")
+```
 
 
 
