@@ -18,6 +18,7 @@ NOTE TO RUN 2.7.1 YOU MUST INSTALL THE REQUIREMENTS (pip install -r"path-to-requ
 
 Compatibility Wheels (CUDA + CUDNN only)
 | PyTorch Version | Python | CUDA | Wheel |
+|-----------------|--------|------|-------|
 | 2.7.1 (cc35 only, all arches fallback)         | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/18zM2wHCSDhSOcYTZhauIU-Cd_IyuaCc5/view?usp=sharing)|
 
 NOTE: When running this wheel, throw into the wheel directory ```cupti64_2022.2.1.dll``` from the provided files. An autopatcher is a WIP, discussing with Pytorch Team.
