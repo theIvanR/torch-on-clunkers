@@ -27,6 +27,104 @@ target with:
 - python
 
 ---
+# Notes on building pytorch 2.7.1 on kepler: 
+- backend changes were made, requiring using m build instead. 
+
+Steps to build (very ugly, work in progress) 
+
+0: Install all the same tools, except cuda 11.7 (and if you want a newer cudnn). Important, with cuda 11.7/11.8 and cc35: Install toolkit and Plugin, NOT DRIVER!! Once installed, run the patch cmake min ONLY. 
+
+1: Run the builder (note, VERY experimental at the moment)
+```batch
+@echo off
+setlocal EnableDelayedExpansion
+
+REM 0: Clear Anything Stale Intel
+REM ===============================
+set CC=cl
+set CXX=cl
+set CMAKE_C_COMPILER=cl
+set CMAKE_CXX_COMPILER=cl
+
+set ONEAPI_ROOT=
+set ICPP_COMPILER=
+set ICX=
+set ICC=
+
+REM 1: Initialize Paths
+REM ===============================
+set "SRC_DIR=C:\Users\%USERNAME%\source\pytorch"
+
+REM A: Call builders
+call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat" x64
+REM call "C:\Program Files (x86)\Intel\oneAPI\compiler\latest\env\vars.bat"
+
+
+REM B: Initialize MKL (properly)
+REM set "MKLROOT=C:\Program Files (x86)\Intel\oneAPI\mkl\latest"
+REM set "CMAKE_PREFIX_PATH=%MKLROOT%"
+REM set "LIB=%LIB%;%MKLROOT%\lib\intel64"
+REM set "INCLUDE=%INCLUDE%;%MKLROOT%\include"
+REM set "PATH=%PATH%;%MKLROOT%\bin"
+
+
+REM C: Initialize CUDA 
+set "CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.7"
+
+set "CUDNN_LIB_DIR=%CUDA_PATH%\lib\x64"
+set "CUDNN_INCLUDE_DIR=%CUDA_PATH%\include"
+set "CUDA_TOOLKIT_ROOT_DIR=%CUDA_PATH%"
+set PATH=%CUDA_PATH%\bin;%CUDA_PATH%\libnvvp;%PATH%
+
+
+
+REM 2: Enter Source and Build Wheel
+REM ===============================
+pushd "%SRC_DIR%" || (
+    echo ERROR: Failed to enter %SRC_DIR%
+    exit /b 1
+)
+
+REM Build Options (mkl buggy, change to your cc desired version) 
+REM set USE_MKL=0
+REM set USE_MKLDNN=0
+set "TORCH_CUDA_ARCH_LIST=3.5"
+python -m build --wheel --no-isolation
+
+
+REM ===== Cleanup =====
+popd
+endlocal
+exit /b 0
+```
+
+2: This will produce a wheel, however there is a bug with windows as linking broken. 
+- something weird is happening with linking aoti custom ops: 
+OSError: [WinError 126] The specified module could not be found. Error loading "C:\Users\Admin\miniconda3\envs\py311\Lib\site-packages\torch\lib\aoti_custom_ops.dll" or one of its dependencies.
+
+The dependencies it calls are: 
+→ mkl_intel_thread.2.dll
+→ libiomp5md.dll
+→ cupti64_2022.2.1.dll
+
+these can be added either to the install root of the wheel (in this case where aoti lives) OR you can patch them to wheel manually via opening it and packing the 3 DLL's into torch/lib and repackaging wheel. Currently a better fix is being investigated, this is all highly experimental
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # How to Make your own wheels? [ <= version 2.0.1]
 
 # 0: Configure System Priors
