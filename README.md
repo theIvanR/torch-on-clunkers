@@ -16,14 +16,10 @@ High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 NOTE TO RUN 2.7.1 YOU MUST INSTALL THE REQUIREMENTS (pip install -r"path-to-requirements')
 
 
-Compatibility Wheels (openBLAS, SSE41)
-```batch
-target with: 
--DCMAKE_C_FLAGS="/arch:SSE4.1 ^
--DCMAKE_CXX_FLAGS="/arch:SSE4.1
- flags in cmake
-```
-(coming soon)
+Compatibility Wheels (CUDA + CUDNN only)
+| 2.7.1 (cc35 only, all arches fallback)         | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/18zM2wHCSDhSOcYTZhauIU-Cd_IyuaCc5/view?usp=sharing)|
+
+NOTE: When running this wheel, throw into the wheel directory ```cupti64_2022.2.1.dll``` from the provided files. An autopatcher is a WIP, discussing with Pytorch Team.
 
 ## Dependencies to run: 
 - Cuda driver >470 and CC>= 35
