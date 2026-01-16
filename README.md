@@ -32,7 +32,7 @@ target with:
 
 Steps to build (very ugly, work in progress) 
 
-0: Install all the same tools, except cuda 11.7 (and if you want a newer cudnn). Important, with cuda 11.7/11.8 and cc35: Install toolkit and Plugin, NOT DRIVER!! Once installed, run the patch cmake min ONLY. 
+0: Install all the same tools, except cuda 11.7 (and if you want a newer cudnn). Important, with cuda 11.7/11.8 and cc35: Install toolkit and Plugin, NOT DRIVER!! Once installed, run the patch cmake min ONLY. Next, install dependencies from txt file
 
 1: Run the builder (note, VERY experimental at the moment)
 ```batch
