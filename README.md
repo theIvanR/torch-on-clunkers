@@ -1,6 +1,6 @@
 # 🏗️ PyTorch on Windows for Older GPUS (Kepler +)
 - **Goal:** Run PyTorch on Windows with Kepler GPUs (Tesla K40c, compute capability **3.5**).  
-- **Stack:** Pytorch **1.12.1 - 2.0.1**, CUDA **11.4.4**, cuDNN **8.7.0+**, Visual Studio **2019**, **Intel oneAPI**, **Python 3.9+**.  
+- **Stack:** Pytorch **1.12.1 - 2.0.1**, CUDA **11.4.4**, cuDNN **8.7.0**, Visual Studio **2019**, **Intel oneAPI**, **Python 3.9+**.  
 - **Arch List** CUDA 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5
 
 # 0. Pre-Built Wheels: 
@@ -15,7 +15,7 @@ High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 
 NOTE TO RUN 2.7.1 YOU MUST INSTALL THE REQUIREMENTS (pip install -r"path-to-requirements')
 
-NOTE CUDNN appears broken in 2.7.1 wheel, working on a patch
+NOTE CUDNN 8.9.7 *doesnt* support cc35 so cudnn 8.7.0 is needed
 
 
 Compatibility Wheels (CUDA + CUDNN only)
