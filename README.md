@@ -15,6 +15,8 @@ High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 
 NOTE TO RUN 2.7.1 YOU MUST INSTALL THE REQUIREMENTS (pip install -r"path-to-requirements')
 
+NOTE CUDNN appears broken in 2.7.1 wheel, working on a patch
+
 
 Compatibility Wheels (CUDA + CUDNN only)
 | PyTorch Version | Python | CUDA | Wheel |
