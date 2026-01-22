@@ -7,6 +7,8 @@
 Before building from source, check if a *prebuilt wheel is available for your setup*. I recommend using 2.0.1 as this is the stable and well tested wheel for all arches. 2.7.1 wheel is currently a WIP and I am in active contact with pytorch developers in order to improve the wheel. 
 
 ---
+# NOTE CUDNNN is broken on all of these atm as *surprise* cudnn 8.9.7 does not support kepler. Rebuilding the wheels. 
+
 High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
@@ -14,8 +16,6 @@ High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 | 2.0.1 (all arches)          | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1L84dnAnMdekX7rJjnxz0vKcmR2LHvfen/view?usp=sharing)|
 
 NOTE TO RUN 2.7.1 YOU MUST INSTALL THE REQUIREMENTS (pip install -r"path-to-requirements')
-
-NOTE CUDNN 8.9.7 *doesnt* support cc35 so cudnn 8.7.0 is needed
 
 
 Compatibility Wheels (CUDA + CUDNN only)
