@@ -10,7 +10,7 @@ Before building from source, check if a *prebuilt wheel is available for your se
 - python
 
 ---
-# NOTE CUDNNN is broken on all of these atm as *surprise* cudnn 8.9.7 does not support kepler. Rebuilding the wheels. 
+
 
 High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 | PyTorch Version | Python | CUDA | Wheel |
