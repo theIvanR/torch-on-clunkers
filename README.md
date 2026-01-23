@@ -25,8 +25,12 @@ Compatibility Wheels (CUDA + CUDNN only)
 (rebuilding)
 
 
-## Dependencies to run: 
-right now rebuilding and cleaning up
+# 0: Configure System Priors
+- cuda and cudnn 8.7.0 NOT 8.9.7
+stuff, will write in a bit
+
+
+
 
 ---
 # Notes on building pytorch 2.7.1 on kepler: 
