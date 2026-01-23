@@ -31,8 +31,10 @@ To Build wheels consult specific files
 ---
 # Notes on building pytorch 2.7.1 on kepler: 
 - Use cuda 11.7 toolkit (NOTE, DO NOT install driver, only toolkit as driver no longer supports k40 gpu)
-- install dependencies.txt as well as build with pip from pytorch folder. 
-- run builder inside of folder 271 
+- install dependencies.txt as well as build with pip from pytorch folder.
+- patch cmake version
+- run builder inside of folder 271
+- patch the missing two dll's
 
 
 
