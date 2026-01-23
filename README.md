@@ -18,11 +18,17 @@ High Performance Wheels: (MKL + MKLDNN + CUDNN + AVX1)
 | 2.7.1 (cc35 only, all arches coming soon)         | 3.11    | 11.4.4 + | [Download wheel]()|
 | 2.0.1 (all arches)          | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1QM96tc8GB9YP7rgt7_wzMhN0rl5H0z8F/view?usp=sharing)|
 
-NOTE: to run the 2.7.1 wheel, copy cupti64_2022 dll into the torch\lib folder as: 
+NOTE: to run 2.0.1 wheel, copy zlibwapi into your environment
+
+NOTE: to run the 2.7.1 wheel, in addition to zlibwapi copy cupti64_2022 dll into the torch\lib folder as: 
 ```
 loading "C:\Users\Admin\miniconda3\envs\py311_pt271\Lib\site-packages\torch\lib\aoti_custom_ops.dll"
 ```
 requires it
+
+
+
+
 
 # 0: Configure System Priors
 - cuda and cudnn 8.7.0 NOT 8.9.7
