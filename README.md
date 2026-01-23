@@ -6,6 +6,7 @@
 # 0. Pre-Built Wheels: 
 Before building from source, check if a *prebuilt wheel is available for your setup*. I recommend using 2.0.1 as this is the stable and well tested wheel for all arches. 2.7.1 wheel is currently a WIP and I am in active contact with pytorch developers in order to improve the wheel. 
 
+Requirements for Wheels: 
 - Cuda driver >470 and CC>= 35
 - python
 
@@ -24,15 +25,9 @@ NOTE: to run the 2.7.1 wheel, in addition to zlibwapi copy cupti64_2022 dll into
 ```
 loading "C:\Users\Admin\miniconda3\envs\py311_pt271\Lib\site-packages\torch\lib\aoti_custom_ops.dll"
 ```
-requires it
 
+To Build wheels consult specific files
 
-
-
-
-# 0: Configure System Priors
-- cuda and cudnn 8.7.0 NOT 8.9.7
-stuff, will write in a bit
 
 
 
