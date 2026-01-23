@@ -26,9 +26,8 @@ pushd "%SRC_DIR%" || (
 )
 
 REM Build Options (mkl buggy, change to your cc desired version) 
-set USE_MKL=0
-set USE_MKLDNN=0
-set USE_CUDNN=0
+set USE_MKLDNN=1
+set USE_CUDNN=1
 set "TORCH_CUDA_ARCH_LIST=3.5"
 python -m build --wheel --no-isolation
 
