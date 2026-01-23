@@ -6,6 +6,9 @@
 # 0. Pre-Built Wheels: 
 Before building from source, check if a *prebuilt wheel is available for your setup*. I recommend using 2.0.1 as this is the stable and well tested wheel for all arches. 2.7.1 wheel is currently a WIP and I am in active contact with pytorch developers in order to improve the wheel. 
 
+- Cuda driver >470 and CC>= 35
+- python
+
 ---
 # NOTE CUDNNN is broken on all of these atm as *surprise* cudnn 8.9.7 does not support kepler. Rebuilding the wheels. 
 
@@ -23,8 +26,7 @@ Compatibility Wheels (CUDA + CUDNN only)
 
 
 ## Dependencies to run: 
-- Cuda driver >470 and CC>= 35
-- python
+right now rebuilding and cleaning up
 
 ---
 # Notes on building pytorch 2.7.1 on kepler: 
