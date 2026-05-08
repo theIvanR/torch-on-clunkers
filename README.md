@@ -7,7 +7,7 @@
 Before building from source, check if a *prebuilt wheel is available for your setup*. I recommend using 2.0.1 as this is the stable and well tested wheel for all arches. 2.7.1 wheel is currently a WIP and I am in active contact with pytorch developers in order to improve the wheel. 
 
 Requirements for Wheels: 
-- Cuda driver >470 and CC>= 35
+- Cuda driver >4720 and CC>= 35
 - python
 
 ---
@@ -30,6 +30,7 @@ To Build wheels consult specific files
 
 ---
 # Notes on building pytorch 2.7.1 on kepler: 
+- install cuda driver 472.50
 - Use cuda 11.7 toolkit (NOTE, DO NOT install driver, only toolkit as driver no longer supports k40 gpu)
 - install dependencies.txt as well as build with pip from pytorch folder.
 - patch cmake version
