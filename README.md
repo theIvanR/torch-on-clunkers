@@ -118,8 +118,8 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
 
 ## C: CUDA Driver and Toolkit (link cuda, link toolkit)
 - **Use DDU** (Display Driver Uninstaller) to clean any existing NVIDIA drivers first.
-- Install the **NVIDIA display driver** of your choice (for example, `463.15` for Kepler K40s).
-- Install the **CUDA Toolkit** of your choice (for example, `11.4.4` for Kepler K40s).
+- Install the **NVIDIA display driver** of your choice (for example, `472.50` for Kepler K40s).
+- Install the **CUDA Toolkit** of your choice (for example, `11.7` for Kepler K40s).
 - Ensure that `nvcc.exe` exists in the CUDA `bin` directory.
 
 **NOTE**: For newer cuda toolkits (11.7,11.8) while these support the kepler k40 the driver does not. In order to use them, install a previous cuda toolkit (11.4) with driver and then update to toolkit of choice and select to not install driver!
