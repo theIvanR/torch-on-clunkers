@@ -1,6 +1,6 @@
 # 🏗️ PyTorch on Windows for Older GPUS (Kepler +)
 - **Goal:** Run PyTorch on Windows with Kepler GPUs (Tesla K40c, compute capability **3.5**).  
-- **Stack:** Pytorch **2.0.1, 2.7.1**, CUDA **11.4.4**, cuDNN **8.7.0**, Visual Studio **2019**, **Intel oneAPI**, **Python 3.9+**.  
+- **Stack:** Pytorch **2.0.1, 2.7.1**, CUDA **11.8**, cuDNN **8.7.0**, Visual Studio **2019**, **Intel oneAPI**, **Python 3.9+**.  
 - **Arch List** CUDA 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5
 
 # 0. Pre-Built Wheels: 
@@ -117,12 +117,9 @@ python patch_cmake_minimum.py --root C:\Users\Admin\source\pytorch
   - `PATH`
 
 ## C: CUDA Driver and Toolkit (link cuda, link toolkit)
-- **Use DDU** (Display Driver Uninstaller) to clean any existing NVIDIA drivers first.
 - Install the **NVIDIA display driver** of your choice (for example, `472.50` for Kepler K40s).
-- Install the **CUDA Toolkit** of your choice (for example, `11.7` for Kepler K40s).
+- Install the **CUDA Toolkit** of your choice (for example, `11.8` for Kepler K40s) without display driver!
 - Ensure that `nvcc.exe` exists in the CUDA `bin` directory.
-
-**NOTE**: For newer cuda toolkits (11.7,11.8) while these support the kepler k40 the driver does not. In order to use them, install a previous cuda toolkit (11.4) with driver and then update to toolkit of choice and select to not install driver!
 
 ## D: cuDNN (link)
 - Copy cuDNN **directly into the CUDA folder**, **not anywhere else**:
