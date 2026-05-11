@@ -24,6 +24,7 @@ set "USE_KINETO=0"
 set "USE_MKLDNN=1"
   
 set "TORCH_CUDA_ARCH_LIST=3.5"
-REM   
+REM set "TORCH_CUDA_ARCH_LIST=3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5"
+
 python -m build --wheel --no-isolation
 endlocal
