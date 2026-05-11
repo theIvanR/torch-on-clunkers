@@ -25,8 +25,8 @@ NOTE: I recommend to also use the modded bios for kepler gpus to achieve higher 
 ## 1: Set up environment
 - open anaconda prompt (administrator) and create new environment for building
   ```bash
-  conda create -n py311 python=3.11
-  conda activate py311
+  conda create -n py311_debug python=3.11
+  conda activate py311_debug
   ```
   
 ## 2: Fetch and Build
