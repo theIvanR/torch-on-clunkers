@@ -6,7 +6,7 @@
 ## Pre Built Wheels, High Performance
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
-| 2.7.1 (cc35 only, AVX2)         | 3.11    | 11.4.4 + | [Download wheel]()|
+| 2.7.1 (cc35 only, AVX2)         | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1ZEGXHUkDTZFxHzD-zMVJ1l1sJLvShiIe/view?usp=drive_link)|
 | 2.0.1 (all arches, AVX)          | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1QM96tc8GB9YP7rgt7_wzMhN0rl5H0z8F/view?usp=sharing)|
 
 
