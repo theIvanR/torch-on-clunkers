@@ -9,7 +9,7 @@
 | 2.7.1 (cc35 only, AVX2)         | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1ZEGXHUkDTZFxHzD-zMVJ1l1sJLvShiIe/view?usp=drive_link)|
 | 2.0.1 (all arches, AVX)          | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1QM96tc8GB9YP7rgt7_wzMhN0rl5H0z8F/view?usp=sharing)|
 
-
+NOTE: I recommend to also use the modded bios for kepler gpus to achieve higher performance. More infos in my other repository here: https://github.com/theIvanR/kepler-on-steroids
 
 ## 0: Set up environment
 - git
@@ -35,6 +35,14 @@
 ```bash
 Successfully built torch-2.7.1a0+gite2d141d-cp311-cp311-win_amd64.whl
 ```
+
+kineto_note:
+  USE_KINETO can introduce the CUDA profiling stack into the build, which may
+  pull in CUPTI and related runtime dependencies. On Windows, that extra
+  dependency chain can break DLL resolution if the CUDA toolkit, driver, or
+  profiler-related libraries are not aligned. In practice, the issue is not
+  usually "Kineto itself" but the additional profiling/runtime layers it
+  enables.
 
 ## 3: Install Wheel and Enjoy!
 - install wheel via pip from "pytorch/dist"
