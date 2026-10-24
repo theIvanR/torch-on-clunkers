@@ -28,6 +28,8 @@ NOTE: I recommend to also use the modded bios for kepler gpus to achieve higher 
   conda create -n py311_debug python=3.11
   conda activate py311_debug
   ```
+- install dependencies
+- recommeneded: install libuv with conda
   
 ## 2: Fetch and Build
 - run the pt_fetch.cmd script to fetch pytorch 2.7.1
