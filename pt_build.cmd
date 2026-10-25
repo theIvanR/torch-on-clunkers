@@ -102,7 +102,7 @@ set "USE_MKLDNN=1"
 set "USE_OPENMP=0"
 set "BLAS=MKL"
 REM set "TORCH_CUDA_ARCH_LIST=3.5"
-set "TORCH_CUDA_ARCH_LIST=3.5;3.7;5.0;5.2;5.3;6.0;6.1;6.2;7.0;7.2;7.5;8.0;8.6;8.7;8.9;9.0"
+set "TORCH_CUDA_ARCH_LIST=3.5;3.7;5.2;6.0;6.1;7.0;7.2;7.5"
 
 REM ============================================================
 REM 4. Build PyTorch wheel
