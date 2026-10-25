@@ -19,7 +19,6 @@ call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary
 if errorlevel 1 exit /b 1
 
 
-
 REM ============================================================
 REM 1B. Configure oneMKL + Intel OpenMP
 REM ============================================================
