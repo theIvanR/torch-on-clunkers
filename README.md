@@ -78,7 +78,7 @@ The full build can then use the Conda environment's libuv headers, library, and 
 From the repository containing the build scripts:
 
 1. Run `pt_fetch.cmd` to fetch the PyTorch 2.7.1 source.
-2. Run `pt_builder.cmd` for the minimal configuration, or the full build script for distributed support and Intel MKL integration.
+2. Run `pt_builder.cmd` for the full configuration with distributed support and Intel MKL integration.
 3. Adjust the build flags as required.
 
 The CUDA architecture list is controlled by `TORCH_CUDA_ARCH_LIST`. For example:
@@ -89,17 +89,10 @@ set "TORCH_CUDA_ARCH_LIST=3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5"
 
 For a Tesla K40c-only build, use `3.5` to reduce compilation time.
 
-The full build enables distributed support and Intel CPU libraries. Actual backend availability depends on successful configuration, compilation, and runtime testing.
+### Notes on Build flags: 
 
-### Kineto / CUPTI
-
-Kineto is disabled in the recommended build configuration:
-
-```bat
-set "USE_KINETO=0"
-```
-
-Enabling it can introduce additional CUDA profiling dependencies, including CUPTI. If DLL loading fails, inspect the missing dependency and verify that the toolkit, driver, and profiling libraries are compatible before adding DLLs manually.
+- Kineto / CUPTI (always disabled), Enabling it can introduce additional CUDA profiling dependencies, including CUPTI. If DLL loading fails, inspect the missing dependency and verify that the toolkit, driver, and profiling libraries are compatible before adding DLLs manually.
+- USE_OPENMP (disabled in mkl builds), enabling it causes a conflict with dependencies due to open mp being selected.
 
 A successful build should produce a wheel similar to:
 
