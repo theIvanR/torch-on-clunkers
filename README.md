@@ -15,7 +15,7 @@ Build PyTorch 2.7.1 for legacy NVIDIA GPUs, including Kepler (Tesla K40c, comput
 | Visual Studio | 2019 / MSVC v142 |
 | Intel oneAPI | 2024.2.1.101 |
 | NVIDIA driver | 472.50 |
-| Target architectures | 3.5;3.7;5.2;6.0;6.1;7.0;7.2;7.5 |
+| Target architectures | 3.5;3.7;5.2;6.0;6.1;7.0;7.5 |
 
 The goal is to retain support for legacy GPU architectures while building a modern PyTorch stack on Windows.
 
