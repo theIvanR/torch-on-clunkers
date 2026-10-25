@@ -28,7 +28,10 @@ The goal is to retain support for legacy GPU architectures while building a mode
 | 2.7.1 — all listed architectures, AVX2 | 3.11 | CUDA 11.4+ | [Download wheel](https://drive.google.com/file/d/1xQWKs356gO3Ys5SASgXLfhgCgmlro_2g/view?usp=drive_link) |
 | 2.0.1 — all listed architectures, AVX | 3.11 | CUDA 11.4+ | [Download wheel](https://drive.google.com/file/d/1QM96tc8GB9YP7rgt7_wzMhN0rl5H0z8F/view?usp=sharing) |
 
-**Note:** AVX and AVX2 are CPU instruction-set requirements, separate from GPU architecture support. Check compatibility with your CPU before installing a wheel.
+### High performance wheels (libuv and mkl, but currently only cc35 target)
+| PyTorch | Python | CUDA compatibility | Build |
+|---|---|---|---|
+| 2.7.1 — all listed architectures, AVX2 | 3.11 | CUDA 11.8 | [Download wheel](temp) |
 
 For additional Kepler GPU performance modifications, see [Kepler on Steroids](https://github.com/theIvanR/kepler-on-steroids).
 
