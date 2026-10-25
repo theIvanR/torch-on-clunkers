@@ -120,6 +120,10 @@ After installing the wheel, ensure the following DLL dependencies are available 
 | `libiomp5md.dll` | Full builds | `%CONDA_PREFIX%\Lib\site-packages\torch\lib` |
 | `mkl_intel_thread.2.dll` | Full builds | `%CONDA_PREFIX%\Lib\site-packages\torch\lib` |
 | `uv.dll` | Full builds | `%CONDA_PREFIX%\Lib\site-packages\torch\lib` |
+| `mkl_core.2.dll` | Full builds | `%CONDA_PREFIX%\Lib\site-packages\torch\lib` |
+| `mkl_avx2.2.dll` | Full builds | `%CONDA_PREFIX%\Lib\site-packages\torch\lib` |
+
+>note, instead of `mkl_avx2.2.dll` the file `mkl_def.2.dll` or `mkl_avx512.2.dll` can also be used and these are in the mkl bin folder, but as targets are avx 2 systems, these are not included
 
 **Troubleshooting:** If a dependency is missing or fails to load, inspect the affected binary and its dependency tree using [Dependencies](https://github.com/lucasg/Dependencies/releases/tag/v1.11.1).
 
