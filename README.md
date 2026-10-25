@@ -3,7 +3,7 @@
 - **Stack:** Pytorch **2.7.1**, CUDA **11.8**, cuDNN **8.7.0**, Visual Studio **2019**, **Intel oneAPI**, **Python 3.11**.  
 - **Arch List** CUDA 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5
 
-## Pre Built Wheels, High Performance
+## **WORK IN PROGRESS** Pre Built Wheels, (no libuv, no mkl)
 | PyTorch Version | Python | CUDA | Wheel |
 |-----------------|--------|------|-------|
 | 2.7.1 (All arches, AVX2)         | 3.11    | 11.4.4 + | [Download wheel](https://drive.google.com/file/d/1xQWKs356gO3Ys5SASgXLfhgCgmlro_2g/view?usp=drive_link)|
