@@ -19,46 +19,30 @@ call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary
 if errorlevel 1 exit /b 1
 
 
-
 REM ============================================================
-REM 1B. Initialize Intel oneAPI environment
+REM 1B. Configure oneMKL paths only — no oneAPI setvars
 REM ============================================================
 set "ONEAPI_ROOT=C:\Program Files (x86)\Intel\oneAPI"
+set "MKLROOT=%ONEAPI_ROOT%\mkl\latest"
 
-if not exist "%ONEAPI_ROOT%\setvars.bat" (
-    echo ERROR: Intel oneAPI setvars.bat not found.
-    exit /b 1
-)
+if not exist "%MKLROOT%\include\mkl.h" goto :mkl_not_found
 
-call "%ONEAPI_ROOT%\setvars.bat" intel64 vs2019
-if errorlevel 1 (
-    echo ERROR: Intel oneAPI initialization failed.
-    exit /b 1
-)
+set "INCLUDE=%MKLROOT%\include;%INCLUDE%"
+set "LIB=%MKLROOT%\lib;%LIB%"
+set "PATH=%MKLROOT%\bin;%PATH%"
 
-REM Verify the expected compiler is still accessible.
-where cl >nul 2>&1
-if errorlevel 1 (
-    echo ERROR: MSVC compiler not found after oneAPI initialization.
-    exit /b 1
-)
-
-echo Intel oneAPI environment initialized.
-echo ONEAPI_ROOT=%ONEAPI_ROOT%
-echo.
-
-REM Verify oneMKL headers (check common installation layouts).
-if exist "%ONEAPI_ROOT%\mkl\latest\include\mkl.h" (
-    echo Found oneMKL headers.
-) else if exist "%ONEAPI_ROOT%\2024.2\mkl\latest\include\mkl.h" (
-    echo Found oneMKL headers under 2024.2.
-) else (
-    echo NOTE: oneMKL headers not found in expected locations.
-)
-
-REM Show the active compiler and Python.
+echo oneMKL configured.
+echo MKLROOT=%MKLROOT%
 where cl
 where python
+goto :mkl_done
+
+:mkl_not_found
+echo ERROR: oneMKL headers not found.
+echo Checked: "%MKLROOT%\include\mkl.h"
+exit /b 1
+
+:mkl_done
 
 
 REM ============================================================
@@ -94,6 +78,7 @@ python -m pip install -U build
 cd /d "%USERPROFILE%\source\pytorch"
 if errorlevel 1 exit /b 1
 
+set "MAX_JOBS=17"
 set "USE_CUDA=1"
 set "USE_CUDNN=1"
 set "USE_DISTRIBUTED=1"
