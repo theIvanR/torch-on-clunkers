@@ -78,13 +78,13 @@ python -m pip install -U build
 cd /d "%USERPROFILE%\source\pytorch"
 if errorlevel 1 exit /b 1
 
-set "MAX_JOBS=17"
+REM set "MAX_JOBS=17"
 set "USE_CUDA=1"
 set "USE_CUDNN=1"
 set "USE_DISTRIBUTED=1"
 set "USE_KINETO=0"
 set "USE_MKLDNN=1"
-set "USE_MKL=1"
+REM set "USE_MKL=1"
 set "BLAS=MKL"
 set "TORCH_CUDA_ARCH_LIST=3.5"
 
