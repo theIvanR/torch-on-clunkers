@@ -109,13 +109,29 @@ Successfully built torch-2.7.1a0+gite2d141c-cp311-cp311-win_amd64.whl
 
 The exact version suffix depends on the source revision.
 
-## 6. Install and test
+## 6. Install the wheel
 
 Install the generated wheel from the PyTorch `dist` directory:
 
 ```bat
 pip install dist\torch-*.whl
 ```
+
+## 7. Bundle Required Runtime Dependencies
+
+After installing the wheel, ensure the following DLL dependencies are available at the specified locations. These are runtime dependencies requested by `aoti_custom_ops.dll`.
+
+| DLL | Build configuration | Destination |
+|---|---|---|
+| `zlibwapi.dll` | All builds | Conda environment root: `%CONDA_PREFIX%` |
+| `libiomp5md.dll` | Full builds | `%CONDA_PREFIX%\Lib\site-packages\torch\lib` |
+| `mkl_intel_thread.2.dll` | Full builds | `%CONDA_PREFIX%\Lib\site-packages\torch\lib` |
+| `uv.dll` | Full builds | `%CONDA_PREFIX%\Lib\site-packages\torch\lib` |
+
+**Troubleshooting:** If a dependency is missing or fails to load, inspect the affected binary and its dependency tree using [Dependencies](https://github.com/lucasg/Dependencies/releases/tag/v1.11.1).
+
+
+## 8 Test the built wheel
 
 Verify CUDA availability and enumerate the detected GPUs:
 
@@ -144,14 +160,3 @@ print("oneDNN:", torch.backends.mkldnn.is_available())
 ```
 
 For distributed builds, additionally test process-group initialization and an actual collective operation.
-
-## 7. Rebuilding and troubleshooting
-
-- **Preserve build artifacts** when resuming an interrupted build. Delete build directories only when a clean rebuild is necessary.
-- **Change one flag at a time** when troubleshooting configuration or linking failures.
-- Inspect CMake output to confirm that CUDA, MKL, oneDNN, and distributed backends were actually detected.
-- Use a DLL dependency inspection tool to investigate missing runtime dependencies.
-- If an error mentions `zlibwapi.dll`, identify which component requires it and make the DLL available through an appropriate application or environment directory.
-- Verify the final wheel in the intended Conda environment rather than relying on a successful compilation alone.
-
-The build is successful only when the wheel installs and the required GPU, CPU, and distributed functionality works at runtime.
