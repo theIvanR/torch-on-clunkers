@@ -31,9 +31,9 @@ The goal is to retain support for legacy GPU architectures while building a mode
 ### High performance wheels (libuv and mkl, but currently only cc35 target)
 | PyTorch | Python | CUDA compatibility | Build |
 |---|---|---|---|
-| 2.7.1 — all listed architectures, AVX2 | 3.11 | CUDA 11.8 | [Download wheel](temp) |
+| 2.7.1 — CC35, AVX2 | 3.11 | CUDA 11.8 | [Download wheel](temp) |
 
-For additional Kepler GPU performance modifications, see [Kepler on Steroids](https://github.com/theIvanR/kepler-on-steroids).
+For additional Kepler GPU performance modifications, see [Kepler on Steroids](https://drive.google.com/file/d/1WeO1uz6DdOiAQooTUG2ouHa9ajZYDG0p/view?usp=drive_link).
 
 ## 3. Prerequisites
 
